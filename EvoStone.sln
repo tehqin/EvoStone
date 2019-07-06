@@ -1,0 +1,29 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SabberStoneUtil", "SabberStoneUtil\SabberStoneUtil.csproj", "{31A39005-C16A-4BE1-B2A2-38BF7C3876DE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeckEvaluator", "DeckEvaluator\DeckEvaluator.csproj", "{27D55131-9355-4C05-8D05-70955607C21B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StrategySearch", "StrategySearch\StrategySearch.csproj", "{01C65439-A3E8-4077-BF76-C69026AA8852}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{31A39005-C16A-4BE1-B2A2-38BF7C3876DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31A39005-C16A-4BE1-B2A2-38BF7C3876DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31A39005-C16A-4BE1-B2A2-38BF7C3876DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31A39005-C16A-4BE1-B2A2-38BF7C3876DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27D55131-9355-4C05-8D05-70955607C21B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27D55131-9355-4C05-8D05-70955607C21B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27D55131-9355-4C05-8D05-70955607C21B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27D55131-9355-4C05-8D05-70955607C21B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01C65439-A3E8-4077-BF76-C69026AA8852}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01C65439-A3E8-4077-BF76-C69026AA8852}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01C65439-A3E8-4077-BF76-C69026AA8852}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01C65439-A3E8-4077-BF76-C69026AA8852}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

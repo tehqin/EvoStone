@@ -1,0 +1,18 @@
+[Evaluation]
+OpponentDeckSuite = "resources/decks/suites/starterMeta.tml"
+DeckPools = ["resources/decks/pools/starterDecks.tml"]
+
+[[Evaluation.PlayerStrategies]]
+NumGames = 200
+Strategy = "NeuralNet"
+
+[Search]
+Type = "CMA-ES"
+ConfigFilename = "config/cma_config.tml"
+
+[Network]
+LayerSizes = [16, 5, 4, 1]
+
+[Player]
+DeckPool = "Starter Decks"
+DeckName = "Hunter"
