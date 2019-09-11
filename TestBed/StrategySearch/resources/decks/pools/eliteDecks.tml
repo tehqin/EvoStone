@@ -23,7 +23,7 @@ CardList = ["Fen Creeper","Light's Justice","Consecration","Consecration","Raid 
 [[Decks]]
 DeckName = "Aggro Warlock"
 ClassName = "Warlock"
-CardList = ["Southsea Deckhand","Lord of the Arena","Sen'jin Shieldmasta","Injured Blademaster","Wisp","Lightwarden","Young Priestess","Angry Chicken","Worgen Infiltrator","Worgen Infiltrator","King Mukla","Novice Engineer","Scarlet Crusader","Leper Gnome","Dark Iron Dwarf","Youthful Brewmaster","Youthful Brewmaster","Pint-Sized Summoner","Defender of Argus","Mortal Coil","Succubus","Murloc Warleader","Murloc Tidecaller","Sea Giant","Blood Knight","Nightblade","Bloodsail Raider","Wild Pyromancer","Faerie Dragon","Faerie Dragon"]
+CardList = ["Southsea Deckhand","Lord of the Arena","Sen'jin Shieldmasta","Injured Blademaster","Wisp","Lightwarden","Young Priestess","Angry Chicken","Worgen Infiltrator","Worgen Infiltrator","King Mukla","Novice Engineer","Scarlet Crusader","Leper Gnome","Dark Iron Dwarf","Youthful Brewmaster","Youthful Brewmaster","Pint-Sized Summoner","Defender of Argus","Mortal Coil","Felstalker","Murloc Warleader","Murloc Tidecaller","Sea Giant","Blood Knight","Nightblade","Bloodsail Raider","Wild Pyromancer","Faerie Dragon","Faerie Dragon"]
 
 [[Decks]]
 DeckName = "Control Warlock"
