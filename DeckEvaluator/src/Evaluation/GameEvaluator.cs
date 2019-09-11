@@ -73,8 +73,17 @@ namespace DeckEvaluator.Evaluation
          }
       }
 
+      private bool _randomHappened;
+
+      public void RandomHappended(object sender, bool happened)
+      {
+         _randomHappened = happened;
+      }
+
       public GameResult PlayGame()
       {
+         _randomHappened = false;
+         
          var game = new Game(
             new GameConfig()
                {
@@ -89,6 +98,11 @@ namespace DeckEvaluator.Evaluation
                   Shuffle = true,
                   SkipMulligan = false
                });
+
+         // Register for random actions in the Hearthstone game.
+         // This prevents the game from crashing by replanning when 
+         // random occurs.
+         game.RandomHappenedEvent += RandomHappended;
 
          int maxDepth = 13;
          int maxWidth = 4;
@@ -163,9 +177,10 @@ namespace DeckEvaluator.Evaluation
                      totalDamage += damageTaken;
                   }
 
-                  if (game.CurrentPlayer.Choice != null)
+                  if (game.CurrentPlayer.Choice != null || _randomHappened)
                   {
-                     //Console.WriteLine("* Recalculating due to a final solution ...");
+                     _randomHappened = false;
+                     //Console.WriteLine("* Recalculating due to randomness or final solution ...");
                      break;
                   }
                }
@@ -190,9 +205,10 @@ namespace DeckEvaluator.Evaluation
                {
                   //Console.WriteLine(task.FullPrint());
                   game.Process(task);
-                  if (game.CurrentPlayer.Choice != null)
+                  if (game.CurrentPlayer.Choice != null || _randomHappened)
                   {
-                     //Console.WriteLine("* Recalculating due to a final solution ...");
+                     _randomHappened = false;
+                     //Console.WriteLine("* Recalculating due to randomness or final solution ...");
                      break;
                   }
                }
