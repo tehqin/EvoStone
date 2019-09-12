@@ -54,7 +54,7 @@ namespace StrategySearch.Search.EvolutionStrategy
 
          int pos = rnd.Next(_elites.Count);
 			var child = new Individual(_numParams);
-			double scalar = _params.MutationScalar;
+			double scalar = _params.MutationPower;
          for (int i=0; i<_numParams; i++)
             child.ParamVector[i] = clip(gaussian(scalar) + _elites[pos].ParamVector[i]);
          return child;

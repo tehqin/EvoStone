@@ -51,7 +51,7 @@ namespace StrategySearch.Search.CMA_ES
 		public Individual GenerateIndividual()
 		{
 			var randomVector = MathNet.Numerics.LinearAlgebra.Vector<double>
-				.Build.Dense(_numParams, j => gaussian(_params.MutationScalar));
+				.Build.Dense(_numParams, j => gaussian(_params.MutationPower));
 			var p = _distributionTransform * randomVector + _mean;
 			var newIndividual = new Individual(_numParams);
 			newIndividual.ParamVector = p.ToArray();
