@@ -140,13 +140,13 @@ namespace DeckEvaluator.Evaluation
             results.UsageCounts[i] = _usageCount[cardNames[i]];
          results.WinCount = _winCount;
          results.AverageHealthDifference = avgHealthDifference;
-         results.DamageDone = (int)avgDamage;
-         results.NumTurns = (int)turnsPerGame;
-         results.CardsDrawn = (int)avgCardsDrawn;
-         results.HandSize = (int)avgHandSize;
-         results.ManaSpent = (int)avgManaSpent;
-         results.ManaWasted = (int)avgManaWasted;
-         results.StrategyAlignment = (int)avgStrategyAlignment;
+         results.DamageDone = avgDamage;
+         results.NumTurns = turnsPerGame;
+         results.CardsDrawn = avgCardsDrawn;
+         results.HandSize = avgHandSize;
+         results.ManaSpent = avgManaSpent;
+         results.ManaWasted = avgManaWasted;
+         results.StrategyAlignment = avgStrategyAlignment;
 
          return results;
       }
