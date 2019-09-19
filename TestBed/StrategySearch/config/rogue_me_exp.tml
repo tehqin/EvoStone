@@ -1,6 +1,6 @@
 [Evaluation]
-OpponentDeckSuite = "resources/decks/suites/starterMeta.tml"
-DeckPools = ["resources/decks/pools/starterDecks.tml",
+OpponentDeckSuite = "resources/decks/suites/eliteMeta.tml"
+DeckPools = ["resources/decks/pools/eliteDecks.tml",
              "resources/decks/pools/metaDecks.tml"]
 
 [[Evaluation.PlayerStrategies]]
@@ -15,8 +15,8 @@ ConfigFilename = "config/me_config.tml"
 LayerSizes = [16, 5, 4, 1]
 
 [Player]
-DeckPool = "Starter Decks"
-DeckName = "Hunter"
+DeckPool = "Meta Decks"
+DeckName = "Tempo Rogue"
 
 [[Nerfs]]
 CardName = "EVIL Miscreant"

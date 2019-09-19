@@ -15,7 +15,7 @@
 # Send mail at submission and completion of script
 # Specify GPU queue
 #$ -q medium
-#$ -t 1-199
+#$ -t 1-499
 #$ -l mem_free=14.0G
 /bin/echo Running on host: `hostname`.
 /bin/echo In directory: `pwd`
