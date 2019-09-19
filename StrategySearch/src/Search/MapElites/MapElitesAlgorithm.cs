@@ -65,7 +65,8 @@ namespace StrategySearch.Search.MapElites
 
       public Individual GenerateIndividual()
       {
-         if (_individualsEvaluated < _params.Search.InitialPopulation)
+         _individualsDispatched += 1;
+         if (_individualsDispatched <= _params.Search.InitialPopulation)
          {
             var ind = new Individual(_numParams);
             for (int i=0; i<_numParams; i++)
@@ -73,7 +74,6 @@ namespace StrategySearch.Search.MapElites
             return ind;
          }
          
-         _individualsDispatched += 1;
          Individual parent = _featureMap.GetRandomElite();
          var child = new Individual(_numParams);
          double scalar = _params.Search.MutationPower;
