@@ -1,6 +1,6 @@
 [Search]
 InitialPopulation = 100
-NumToEvaluate = 10000
+NumToEvaluate = 50000
 MutationPower = 0.05
 
 [Map]
