@@ -123,7 +123,7 @@ namespace DeckEvaluator.Evaluation
          */
 
          // Calculate turn averages from the totals
-         double avgHealthDifference = _totalHealthDifference / _opponents.Count;
+         double avgHealthDifference = _totalHealthDifference * 1.0 / _opponents.Count;
          double avgDamage = _totalDamage * 1.0 / _totalTurns;
          double avgCardsDrawn = _totalCardsDrawn * 1.0 / _totalTurns;
          double avgHandSize = _totalHandSize * 1.0 / _totalTurns;
