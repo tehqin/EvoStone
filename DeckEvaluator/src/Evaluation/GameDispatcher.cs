@@ -95,6 +95,9 @@ namespace DeckEvaluator.Evaluation
          }
 
          Console.WriteLine("Finished game: "+gameId);
+            
+         // Rest every game.
+         Thread.Sleep(1000);
       }
 
       private void queueGame(int gameId)
@@ -112,14 +115,12 @@ namespace DeckEvaluator.Evaluation
 
       public OverallStatistics Run()
       {
-         Parallel.For(0, _opponents.Count, i => {queueGame(i);});
-         /* for (int i=0; i<_opponents.Count; i++)
-         {
+         Parallel.For(0, _opponents.Count, 
+               new ParallelOptions {MaxDegreeOfParallelism = 8},
+               i => {queueGame(i);});
+         /*
+         for (int i=0; i<_opponents.Count; i++)
             queueGame(i);
-            
-            // Rest every game.
-            Thread.Sleep(1000);
-         }
          */
 
          // Calculate turn averages from the totals

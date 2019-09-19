@@ -141,6 +141,7 @@ namespace DeckEvaluator
 
             // Look at all the files in the current directory.
             // Eliminate anythings that matches our log file.
+            /*
             string[] oFiles = Directory.GetFiles(".", "DeckEvaluator.o*");
             foreach (string curFile in oFiles)
             {
@@ -148,7 +149,7 @@ namespace DeckEvaluator
                {
                   File.Delete(curFile); 
                }
-            }
+            }*/
          }
       }
 
