@@ -11,15 +11,16 @@ namespace StrategySearch.Search
       public OverallStatistics OverallData { get; set; }
       public StrategyStatistics[] StrategyData { get; set; }
       
-      public int Fitness { get; set; }
+      public double Fitness { get; set; }
       public double[] ParamVector { get; set; }
+      public double[] Features { get; set; }
 
       public Individual(int numParams)
       {
          ParamVector = new double[numParams];
       }
 
-      public int GetStatByName(string name)
+      public double GetStatByName(string name)
       {
          return OverallData.GetStatByName(name);
       }

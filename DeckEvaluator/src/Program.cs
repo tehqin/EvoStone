@@ -214,8 +214,7 @@ namespace DeckEvaluator
             double diff = c.Cost - avgDeckMana;
             runningVariance += diff * diff;
          }
-         int deckManaVariance =
-            (int)(runningVariance * 1000000 / deck.CardList.Count);
+         double deckManaVariance = runningVariance / deck.CardList.Count;
 
          // Calculate the number of minion and spell cards
          int numMinionCards = 0;

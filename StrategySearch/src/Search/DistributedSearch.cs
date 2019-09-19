@@ -16,6 +16,7 @@ using StrategySearch.Config;
 using StrategySearch.Logging;
 using StrategySearch.Search.CMA_ES;
 using StrategySearch.Search.EvolutionStrategy;
+using StrategySearch.Search.MapElites;
 
 namespace StrategySearch.Search
 {
@@ -93,9 +94,16 @@ namespace StrategySearch.Search
                Toml.ReadFile<CMA_ES_Params>(config.Search.ConfigFilename);
             _searchAlgo = new CMA_ES_Algorithm(searchConfig, numParams);
          }
+         else if (config.Search.Type.Equals("MAP-Elites"))
+         {
+            var searchConfig = 
+               Toml.ReadFile<MapElitesParams>(config.Search.ConfigFilename);
+            _searchAlgo = new MapElitesAlgorithm(searchConfig, numParams);
+         }
          else
          {
-            Console.WriteLine(string.Format("Strategy {} not supported.", config.Search.Type));
+            Console.WriteLine(string.Format("Strategy {} not supported.", 
+                     config.Search.Type));
          }
 
          // Setup the deck pool and grab our deck and class
@@ -138,8 +146,8 @@ namespace StrategySearch.Search
          Toml.WriteFile<PlayMatchesMessage>(msg, workerInboxPath);
       }
 
-      private int _maxWins;
-      private int _maxFitness;
+      private double _maxWins;
+      private double _maxFitness;
       private void ReceiveResults(string workerOutboxPath, Individual cur)
       {
          // Read the message and then delete the file.
@@ -151,7 +159,7 @@ namespace StrategySearch.Search
          cur.StrategyData = results.StrategyStats;
  
          // Save which elements are relevant to the search
-         cur.Fitness = cur.OverallData.TotalHealthDifference;
+         cur.Fitness = cur.OverallData.AverageHealthDifference;
       }
 
       private void LogIndividual(Individual cur)
@@ -161,8 +169,8 @@ namespace StrategySearch.Search
          Console.WriteLine("------------------");
          Console.WriteLine(string.Format("Eval ({0}):", cur.ID));
          Console.WriteLine("Win Count: "+os.WinCount);
-         Console.WriteLine("Total Health Difference: "
-                           +os.TotalHealthDifference);
+         Console.WriteLine("Average Health Difference: "
+                           +os.AverageHealthDifference);
          Console.WriteLine("Damage Done: "+os.DamageDone);
          Console.WriteLine("Num Turns: "+os.NumTurns);
          Console.WriteLine("Cards Drawn: "+os.CardsDrawn);

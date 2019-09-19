@@ -122,13 +122,14 @@ namespace DeckEvaluator.Evaluation
          }
 
          // Calculate turn averages from the totals
-         long avgDamage = _totalDamage * 1000000L / _totalTurns;
-         long avgCardsDrawn = _totalCardsDrawn * 1000000L / _totalTurns;
-         long avgHandSize = _totalHandSize * 1000000L / _totalTurns;
-         long avgManaSpent = _totalManaSpent * 1000000L / _totalTurns;
-         long avgManaWasted = _totalManaWasted * 1000000L / _totalTurns;
-         long avgStrategyAlignment = _totalStrategyAlignment * 100L / _totalTurns;
-         long turnsPerGame = _totalTurns * 1000000L / _opponents.Count;
+         double avgHealthDifference = _totalHealthDifference / _opponents.Count;
+         double avgDamage = _totalDamage * 1.0 / _totalTurns;
+         double avgCardsDrawn = _totalCardsDrawn * 1.0 / _totalTurns;
+         double avgHandSize = _totalHandSize * 1.0 / _totalTurns;
+         double avgManaSpent = _totalManaSpent * 1.0 / _totalTurns;
+         double avgManaWasted = _totalManaWasted * 1.0 / _totalTurns;
+         double avgStrategyAlignment = _totalStrategyAlignment * 1.0 / _totalTurns;
+         double turnsPerGame = _totalTurns * 1.0 / _opponents.Count;
 
          // Pack up the results and give them back.
          var results = new OverallStatistics();
@@ -137,7 +138,7 @@ namespace DeckEvaluator.Evaluation
          for (int i=0; i<cardNames.Length; i++)
             results.UsageCounts[i] = _usageCount[cardNames[i]];
          results.WinCount = _winCount;
-         results.TotalHealthDifference = _totalHealthDifference;
+         results.AverageHealthDifference = avgHealthDifference;
          results.DamageDone = (int)avgDamage;
          results.NumTurns = (int)turnsPerGame;
          results.CardsDrawn = (int)avgCardsDrawn;

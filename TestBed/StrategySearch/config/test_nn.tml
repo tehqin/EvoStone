@@ -7,8 +7,8 @@ NumGames = 1
 Strategy = "NeuralNet"
 
 [Search]
-Type = "CMA-ES"
-ConfigFilename = "config/cma_config.tml"
+Type = "MAP-Elites"
+ConfigFilename = "config/me_config.tml"
 
 [Network]
 LayerSizes = [16, 5, 4, 1]

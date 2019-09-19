@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 using SabberStoneCore.Enums;
@@ -27,7 +28,12 @@ namespace SabberStoneUtil.Decks
          // Construct the cards from the list of card names
          CardList = new List<Card>();
          foreach (string cardName in cardNames)
-            CardList.Add(Cards.FromName(cardName));
+         {
+            Card curCard = Cards.FromName(cardName);
+            if (curCard == null)
+               Console.WriteLine("Unable to find card: "+cardName);
+            CardList.Add(curCard);
+         }
       }
 
       public string[] GetCardNames()

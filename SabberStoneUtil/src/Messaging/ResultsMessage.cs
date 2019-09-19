@@ -14,27 +14,27 @@ namespace SabberStoneUtil.Messaging
    public class OverallStatistics
    {
       public int[] UsageCounts { get; set; }
-      public int WinCount { get; set; }
-      public int TotalHealthDifference { get; set; }
-      public int DamageDone { get; set; }
-      public int NumTurns { get; set; }
-      public int CardsDrawn { get; set; }
-      public int HandSize { get; set; }
-      public int ManaSpent { get; set; }
-      public int ManaWasted { get; set; }
-      public int StrategyAlignment { get; set; }
-      public int Dust { get; set; }
-      public int DeckManaSum { get; set; }
-      public int DeckManaVariance { get; set; }
-      public int NumMinionCards { get; set; }
-      public int NumSpellCards { get; set; }
+      public double WinCount { get; set; }
+      public double AverageHealthDifference { get; set; }
+      public double DamageDone { get; set; }
+      public double NumTurns { get; set; }
+      public double CardsDrawn { get; set; }
+      public double HandSize { get; set; }
+      public double ManaSpent { get; set; }
+      public double ManaWasted { get; set; }
+      public double StrategyAlignment { get; set; }
+      public double Dust { get; set; }
+      public double DeckManaSum { get; set; }
+      public double DeckManaVariance { get; set; }
+      public double NumMinionCards { get; set; }
+      public double NumSpellCards { get; set; }
    
       public void Accumulate(OverallStatistics rhs)
       {
          for (int i=0; i<UsageCounts.Length; i++)
             UsageCounts[i] += rhs.UsageCounts[i];
          WinCount += rhs.WinCount;
-         TotalHealthDifference += rhs.TotalHealthDifference;
+         AverageHealthDifference += rhs.AverageHealthDifference;
          DamageDone += rhs.DamageDone;
          NumTurns += rhs.NumTurns;
          CardsDrawn += rhs.CardsDrawn;
@@ -55,12 +55,12 @@ namespace SabberStoneUtil.Messaging
          StrategyAlignment /= numStrats;
       }
 
-		public int GetStatByName(string name)
+		public double GetStatByName(string name)
       {
          if (name.Equals("WinCount"))
             return WinCount;
-         if (name.Equals("TotalHealthDifference"))
-            return TotalHealthDifference;
+         if (name.Equals("AverageHealthDifference"))
+            return AverageHealthDifference;
          if (name.Equals("DamageDone"))
             return DamageDone;
          if (name.Equals("NumTurns"))
@@ -91,7 +91,7 @@ namespace SabberStoneUtil.Messaging
 
       public static string[] Properties = new[] {
             "WinCount",
-            "TotalHealthDifference",
+            "AverageHealthDifference",
             "DamageDone",
             "NumTurns",
             "CardsDrawn",
@@ -109,10 +109,10 @@ namespace SabberStoneUtil.Messaging
 
    public class StrategyStatistics
    {
-      public int WinCount { get; set; }
-      public int Alignment { get; set; }
+      public double WinCount { get; set; }
+      public double Alignment { get; set; }
 
-      public int GetStatByName(string name)
+      public double GetStatByName(string name)
       {
          if (name.Equals("WinCount"))
             return WinCount;
