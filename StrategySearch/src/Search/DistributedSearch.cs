@@ -249,7 +249,7 @@ namespace StrategySearch.Search
 				FindNewWorkers();
             
             // Disbatch jobs to the available workers.
-            while (_idleWorkers.Count > 0)
+            while (_idleWorkers.Count > 0 && !_searchAlgo.IsBlocking())
             {
                int workerId = _idleWorkers.Dequeue();
                _runningWorkers.Enqueue(workerId);

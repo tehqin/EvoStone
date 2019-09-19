@@ -41,6 +41,7 @@ namespace StrategySearch.Search.EvolutionStrategy
       }
  
 		public bool IsRunning() => _individualsEvaluated < _params.NumToEvaluate;
+		public bool IsBlocking() => false;
  
       public Individual GenerateIndividual()
       {

@@ -23,6 +23,7 @@ namespace StrategySearch.Search.MapElites
       private int _numParams;
       private MapElitesParams _params;
 
+      private int _individualsDispatched;
       private int _individualsEvaluated;
       private FeatureMap _featureMap;
 
@@ -34,6 +35,7 @@ namespace StrategySearch.Search.MapElites
          _params = searchParams;
 
          _individualsEvaluated = 0;
+         _individualsDispatched = 0;
 
          initMap();
       }
@@ -57,10 +59,13 @@ namespace StrategySearch.Search.MapElites
       }
 
       public bool IsRunning() => _individualsEvaluated < _params.Search.NumToEvaluate;
+      public bool IsBlocking() => 
+         _individualsDispatched == _params.Search.InitialPopulation &&
+         _individualsEvaluated < _params.Search.InitialPopulation;
 
       public Individual GenerateIndividual()
       {
-         if (_individualsEvaluated < _params.Search.NumToEvaluate)
+         if (_individualsEvaluated < _params.Search.InitialPopulation)
          {
             var ind = new Individual(_numParams);
             for (int i=0; i<_numParams; i++)
@@ -68,6 +73,7 @@ namespace StrategySearch.Search.MapElites
             return ind;
          }
          
+         _individualsDispatched += 1;
          Individual parent = _featureMap.GetRandomElite();
          var child = new Individual(_numParams);
          double scalar = _params.Search.MutationPower;
