@@ -63,7 +63,7 @@ namespace DeckEvaluator.Evaluation
 
       private void runGame(int gameId, GameEvaluator ev)
       {
-         //Console.WriteLine("Starting game: "+gameId);
+         Console.WriteLine("Starting game: "+gameId);
 
          // Run a game
          GameEvaluator.GameResult result = ev.PlayGame();
@@ -94,7 +94,7 @@ namespace DeckEvaluator.Evaluation
             _totalStrategyAlignment += result._strategyAlignment;
          }
 
-         //Console.WriteLine("Finished game: "+gameId);
+         Console.WriteLine("Finished game: "+gameId);
       }
 
       private void queueGame(int gameId)
@@ -112,14 +112,15 @@ namespace DeckEvaluator.Evaluation
 
       public OverallStatistics Run()
       {
-         //Parallel.For(0, _opponents.Count, i => {queueGame(i);});
-         for (int i=0; i<_opponents.Count; i++)
+         Parallel.For(0, _opponents.Count, i => {queueGame(i);});
+         /* for (int i=0; i<_opponents.Count; i++)
          {
             queueGame(i);
             
             // Rest every game.
             Thread.Sleep(1000);
          }
+         */
 
          // Calculate turn averages from the totals
          double avgHealthDifference = _totalHealthDifference / _opponents.Count;
