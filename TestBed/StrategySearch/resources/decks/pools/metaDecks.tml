@@ -4,4 +4,4 @@ PoolName = "Meta Decks"
 [[Decks]]
 DeckName = "Tempo Rogue"
 ClassName = "Rogue"
-CardList = ["Backstab", "Backstab", "Preparation", "Preparation", "Shadowstep", "Shadowstep", "Eviscerate", "Eviscerate", "Sap", "Sap", "EVIL Miscreant", "EVIL Miscreant", "Edwin VanCleef", "SI:7 Agent", "Raiding Party", "Raiding Party", "Waggle Pick", "Waggle Pick", "Myra's Unstable Element", "Wisp", "Bloodsail Corsair", "Southsea Deckhand", "Southsea Deckhand", "Dread Corsair", "Dread Corsair", "Lifedrinker", "Lifedrinker", "Leeroy Jenkins", "Chef Nomi"]
+CardList = ["Backstab", "Backstab", "Preparation", "Preparation", "Shadowstep", "Shadowstep", "Eviscerate", "Eviscerate", "Sap", "Sap", "EVIL Miscreant", "EVIL Miscreant", "Edwin VanCleef", "SI:7 Agent", "SI:7 Agent", "Raiding Party", "Raiding Party", "Waggle Pick", "Waggle Pick", "Myra's Unstable Element", "Wisp", "Bloodsail Corsair", "Southsea Deckhand", "Southsea Deckhand", "Dread Corsair", "Dread Corsair", "Lifedrinker", "Lifedrinker", "Leeroy Jenkins", "Chef Nomi"]
