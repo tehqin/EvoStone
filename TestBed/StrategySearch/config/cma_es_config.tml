@@ -1,0 +1,4 @@
+PopulationSize = 500
+NumToEvaluate = 50000
+NumParents = 250
+MutationPower = 0.8

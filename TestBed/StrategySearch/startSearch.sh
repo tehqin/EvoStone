@@ -23,4 +23,4 @@
 # Load dotnet module
 module load dotnet/2.2.300
 #Full path to executable
-dotnet bin/StrategySearch.dll config/rogue_me_exp.tml
+dotnet bin/StrategySearch.dll config/rogue_cma_es_exp.tml

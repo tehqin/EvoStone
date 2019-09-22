@@ -1,12 +1,12 @@
 [Search]
-InitialPopulation = 100
+InitialPopulation = 500
 NumToEvaluate = 50000
 MutationPower = 0.05
 
 [Map]
 Type = "FixedFeature"
-StartSize = 40
-EndSize = 40
+StartSize = 80
+EndSize = 80
 
 [[Map.Features]]
 Name = "NumTurns"

@@ -1,4 +1,0 @@
-PopulationSize = 100
-NumToEvaluate = 10000
-NumElites = 10
-MutationPower = 0.5
