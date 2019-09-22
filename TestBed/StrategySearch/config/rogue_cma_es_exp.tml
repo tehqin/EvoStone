@@ -1,0 +1,29 @@
+[Evaluation]
+OpponentDeckSuite = "resources/decks/suites/eliteMeta.tml"
+DeckPools = ["resources/decks/pools/eliteDecks.tml",
+             "resources/decks/pools/metaDecks.tml"]
+
+[[Evaluation.PlayerStrategies]]
+NumGames = 200
+Strategy = "NeuralNet"
+
+[Search]
+Type = "CMA-ES"
+ConfigFilename = "config/cma_es_config.tml"
+
+[Network]
+LayerSizes = [16, 5, 4, 1]
+
+[Player]
+DeckPool = "Meta Decks"
+DeckName = "Tempo Rogue"
+
+[[Nerfs]]
+CardName = "EVIL Miscreant"
+NewManaCost = 3
+NewAttack = 1
+NewHealth = 5
+
+[[Nerfs]]
+CardName = "Raiding Party"
+NewManaCost = 3
