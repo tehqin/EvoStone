@@ -5,59 +5,113 @@ using System.Collections.Generic;
 
 using MathNet.Numerics.LinearAlgebra;
 using MathNet.Numerics.LinearAlgebra.Double;
-using MathNet.Numerics.LinearAlgebra.Factorization;
+using LA = MathNet.Numerics.LinearAlgebra;
 
 using StrategySearch.Config;
+using StrategySearch.Emitters;
 
 namespace StrategySearch.Search.CMA_ES
 {
 	class CMA_ES_Algorithm : SearchAlgorithm
 	{
 		private static Random rnd = new Random();
-		private static double gaussian(double stdDev)
+		private static double gaussian()
 		{
 			double u1 = 1.0 - rnd.NextDouble();
 			double u2 = 1.0 - rnd.NextDouble();
-			double randStdNormal = Math.Sqrt(-2.0 * Math.Log(u1))
-				* Math.Sin(2.0 * Math.PI * u2);
-			return stdDev * randStdNormal;
+			return Math.Sqrt(-2.0 * Math.Log(u1)) * Math.Sin(2.0 * Math.PI * u2);
 		}
 
-      private int _numParams;
+		private int _numParams;
 		private CMA_ES_Params _params;
 
-		private MathNet.Numerics.LinearAlgebra.Vector<double> _mean;
+		private LA.Vector<double> _mean;
 		private List<Individual> _population;
 		private int _individualsEvaluated;
 
-		Matrix<double> _covarianceMatrix;
-		Matrix<double> _distributionTransform;
+      private MathNet.Numerics.LinearAlgebra.Vector<double> _weights;
+
+      private double _mueff, _mutationPower, _cc, _cs, _c1, _cmu, _damps, _chiN;
+      private LA.Vector<double> _pc, _ps;
+
+      private DecompMatrix _C;
 
 		public CMA_ES_Algorithm(CMA_ES_Params searchParams, int numParams)
 		{
          _numParams = numParams;
 			_params = searchParams;
-
+			
+         _individualsEvaluated = 0;
 			_population = new List<Individual>();
-			_individualsEvaluated = 0;
-			_mean = MathNet.Numerics.LinearAlgebra.Vector<double>
-							.Build.Dense(_numParams);
-			_covarianceMatrix = DenseMatrix.CreateIdentity(_numParams);
-			_distributionTransform = _covarianceMatrix;
-		}
+
+         Reset();
+      }
+
+      public void Reset()
+      {
+         if (_params.PopulationSize == -1)
+            _params.PopulationSize = (int)(4.0+Math.Floor(3.0*Math.Log(_numParams)));
+         if (_params.NumParents == -1)
+            _params.NumParents = _params.PopulationSize / 2;
+         _mutationPower = _params.MutationPower;
+
+         _weights = MathNet.Numerics.LinearAlgebra.
+            Vector<double>.Build.Dense(_params.NumParents);
+         for (int i=0; i<_params.NumParents; i++)
+            _weights[i] = Math.Log(_params.NumParents+0.5)-Math.Log(i+1);
+         _weights /= _weights.Sum();
+         double sum_weights = _weights.Sum();
+         double sum_squares = _weights.Sum(x => x * x);
+         _mueff = sum_weights * sum_weights / sum_squares;
+
+         _mean = LA.Vector<double>.Build.Dense(_numParams);
+
+         _cc = (4+_mueff/_numParams) / (_numParams+4 + 2*_mueff/_numParams);
+         _cs = (_mueff+2) / (_numParams+_mueff+5);
+         _c1 = 2 / (Math.Pow(_numParams+1.3, 2) + _mueff);
+         _cmu = Math.Min(1-_c1, 
+                2*(_mueff-2+1/_mueff) / (Math.Pow(_numParams+2, 2)+_mueff));
+         _damps = 1+2*Math.Max(0, Math.Sqrt((_mueff-1)/(_numParams+1))-1)+_cs;
+         _chiN = Math.Sqrt(_numParams) * 
+            (1.0-1.0/(4.0*_numParams)+1.0/(21.0*Math.Pow(_numParams,2)));
+
+         _pc = LA.Vector<double>.Build.Dense(_numParams);
+         _ps = LA.Vector<double>.Build.Dense(_numParams);
+		
+         _C = new DecompMatrix(_numParams);
+      }
+
+      public bool CheckStop(List<Individual> parents)
+      {
+         if (_C.ConditionNumber > 1e14)
+            return true;
+         
+         double area = _mutationPower * Math.Sqrt(_C.Eigenvalues.Maximum());
+         if (area < 1e-11)
+            return true;
+         
+         double flatness = 
+            Math.Abs(parents[0].Fitness - parents[parents.Count-1].Fitness);
+         if (flatness < 1e-12)
+            return true;
+
+         return false;      
+      }
 
 		public bool IsRunning() => _individualsEvaluated < _params.NumToEvaluate;
-		public bool IsBlocking() => false;
+      public bool IsBlocking() => false;
 
 		public Individual GenerateIndividual()
 		{
 			var randomVector = MathNet.Numerics.LinearAlgebra.Vector<double>
-				.Build.Dense(_numParams, j => gaussian(_params.MutationPower));
-			var p = _distributionTransform * randomVector + _mean;
+				.Build.Dense(_numParams, j => gaussian());
+         for (int i=0; i<_numParams; i++)
+            randomVector[i] *= _mutationPower * Math.Sqrt(_C.Eigenvalues[i]);
+
+         var p = _C.Eigenbasis * randomVector + _mean;
+
 			var newIndividual = new Individual(_numParams);
 			newIndividual.ParamVector = p.ToArray();
-			for (int i=0; i<_numParams; i++)
-            newIndividual.ParamVector[i] = newIndividual.ParamVector[i];
 			return newIndividual;
 		}
 
@@ -68,46 +122,50 @@ namespace StrategySearch.Search.CMA_ES
 			_population.Add(ind);
 			if (_population.Count >= _params.PopulationSize)
 			{
-				// Compute the rotation and stretching transformation
-				Evd<double> evd = _covarianceMatrix.Evd();
-				var values = DiagonalMatrix.OfDiagonal(_numParams, _numParams,
-						evd.EigenValues.Select(c => Complex.Sqrt(c).Real));
-				Matrix<double> vectors = evd.EigenVectors;
-				_distributionTransform = vectors * values;
+            // Rank solutions
+				var parents = _population.OrderByDescending(o => o.Fitness)
+					.Take(_params.NumParents).ToList();
+            Console.WriteLine("Fitness: "+parents[0].Fitness);
 
-				// Grab the elites
-				var elites = _population.OrderByDescending(o => o.Fitness)
-					.Take(_params.NumElites).ToList();
+            
+            // Recombination of the new mean
+		      LA.Vector<double> oldMean = _mean;
+            _mean = LA.Vector<double>.Build.Dense(_numParams);
+            for (int i=0; i<_params.NumParents; i++)
+               _mean += DenseVector.OfArray(parents[i].ParamVector) * _weights[i]; 
+            //Console.WriteLine("Mean: "+_mean);
 
-				// Update the covariance matrix
-				for (int i=0; i<_numParams; i++)
-				{
-					for (int j=0; j<_numParams; j++)
-					{
-						double cell = 0;
-						for (int k=0; k<elites.Count; k++)
-						{
-							double left = elites[k].ParamVector[i] - _mean[i];
-							double right = elites[k].ParamVector[j] - _mean[j];
-							cell += left * right;
-						}
-						cell /= elites.Count;
-						_covarianceMatrix[i,j] = 0.8 * _covarianceMatrix[i,j]
-														+ 0.2 * cell;
-					}
-				}
+            // Update the evolution path
+            LA.Vector<double> y = _mean - oldMean;
+            LA.Vector<double> z = _C.Invsqrt * y;
+            _ps = (1.0-_cs) * _ps + (Math.Sqrt(_cs * (2.0 - _cs) * _mueff) / _mutationPower) * z;
+            double left = _ps.DotProduct(_ps) / _numParams
+               / (1.0-Math.Pow(1.0-_cs, 2 * _individualsEvaluated / _params.PopulationSize));
+            double right = 2.0 + 4.0 / (_numParams+1.0);
+            double hsig = left < right ? 1 : 0;
+            _pc = (1.0 - _cc) * _pc + hsig * Math.Sqrt(_cc * (2.0 - _cc) * _mueff) * y;
 
-				// Calculate the new mean
-				var sums = new double[_numParams];
-				foreach (Individual cur in elites)
-					for (int i=0; i<_numParams; i++)
-						sums[i] += cur.ParamVector[i];
-				for (int i=0; i<_numParams; i++)
-					sums[i] /= elites.Count;
-				_mean = MathNet.Numerics.LinearAlgebra.Vector<double>.Build.Dense(sums);
+            // Covariance matrix update
+            double c1a = _c1 * (1.0 - (1.0 - hsig * hsig) * _cc * (2.0 - _cc));
+            _C.C *= (1.0 - c1a - _cmu);
+            _C.C += _c1 * _pc.OuterProduct(_pc);
+            for (int i=0; i<_params.NumParents; i++)
+            {
+               LA.Vector<double> dv = DenseVector.OfArray(parents[i].ParamVector) - oldMean;
+               _C.C += _weights[i] * _cmu * dv.OuterProduct(dv) / (_mutationPower * _mutationPower);
+            }
 
-				// Progress to the next generation
-				_population.Clear();
+            if (CheckStop(parents))
+               Reset();
+            _C.UpdateEigensystem();
+
+            // Update sigma
+            double cn = _cs / _damps;
+            double sumSquarePs = _ps.DotProduct(_ps);
+            _mutationPower *= Math.Exp(Math.Min(1, cn * (sumSquarePs / _numParams - 1) / 2));
+
+
+            _population.Clear();
 			}
 		}
 	}
