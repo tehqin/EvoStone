@@ -39,6 +39,7 @@ namespace StrategySearch.Logging
             // The data to maintain for individuals evaluated.
             string[] individualLabels = {
                   "Individual",
+                  "Emitter",
                };
 
             var dataLabels = individualLabels
@@ -73,6 +74,7 @@ namespace StrategySearch.Logging
          {
             string[] individualData = {
                   cur.ID.ToString(),
+                  cur.EmitterID.ToString(),
                };
 
             var overallStatistics =

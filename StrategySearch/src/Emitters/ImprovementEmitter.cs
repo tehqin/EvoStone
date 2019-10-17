@@ -80,6 +80,7 @@ namespace StrategySearch.Emitters
 
          var newIndividual = new Individual(_numParams);
          newIndividual.ParamVector = p.ToArray();
+         NumReleased++;
          return newIndividual;
       }
 

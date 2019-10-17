@@ -15,6 +15,7 @@ using SabberStoneUtil.Messaging;
 using StrategySearch.Config;
 using StrategySearch.Logging;
 using StrategySearch.Search.CMA_ES;
+using StrategySearch.Search.CMA_ME;
 using StrategySearch.Search.EvolutionStrategy;
 using StrategySearch.Search.MapElites;
 
@@ -93,6 +94,12 @@ namespace StrategySearch.Search
             var searchConfig = 
                Toml.ReadFile<CMA_ES_Params>(config.Search.ConfigFilename);
             _searchAlgo = new CMA_ES_Algorithm(searchConfig, numParams);
+			}
+         else if (config.Search.Type.Equals("CMA-ME"))
+         {
+            var searchConfig = 
+               Toml.ReadFile<CMA_ME_Params>(config.Search.ConfigFilename);
+            _searchAlgo = new CMA_ME_Algorithm(searchConfig, numParams);
          }
          else if (config.Search.Type.Equals("MAP-Elites"))
          {

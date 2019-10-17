@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 using StrategySearch.Config;
 using StrategySearch.Emitters;
+using StrategySearch.Logging;
 using StrategySearch.Mapping;
 using StrategySearch.Mapping.Sizers;
 
@@ -39,6 +40,8 @@ namespace StrategySearch.Search.CMA_ME
       private int _individualsEvaluated;
       private FeatureMap _featureMap;
 
+      private FrequentMapLog _map_log;
+
       private void initMap()
       {
          var mapSizer = new LinearMapSizer(_params.Map.StartSize,
@@ -53,6 +56,8 @@ namespace StrategySearch.Search.CMA_ME
                                                 _params.Map, mapSizer);
          else
             Console.WriteLine("ERROR: No feature map specified in config file.");
+      
+         _map_log = new FrequentMapLog("logs/elite_map_log.csv", _featureMap);
       }
 
       public bool IsRunning() => _individualsEvaluated < _params.Search.NumToEvaluate;
@@ -60,11 +65,16 @@ namespace StrategySearch.Search.CMA_ME
 
       public Individual GenerateIndividual()
       {
+         for (int i=0; i<_emitters.Count; i++)
+         {
+            Console.WriteLine(string.Format("EM[{0}] = {1}", i, _emitters[i].NumReleased));
+         }
+
 			int pos = 0;
 			Emitter em = _emitters[pos];
          for (int i=1; i<_emitters.Count; i++)
          {
-            if (em.NumReleased < _emitters[i].NumReleased)
+            if (em.NumReleased > _emitters[i].NumReleased)
             {
                em = _emitters[i];
                pos = i;
@@ -73,6 +83,7 @@ namespace StrategySearch.Search.CMA_ME
 
          Individual ind = em.GenerateIndividual();
          ind.EmitterID = pos;
+         Console.WriteLine("Emitting from: "+ind.EmitterID);
          return ind;
       }
 
@@ -86,8 +97,9 @@ namespace StrategySearch.Search.CMA_ME
             ind.Features[i] = ind.GetStatByName(_params.Map.Features[i].Name);
 
 			_emitters[ind.EmitterID].ReturnEvaluatedIndividual(ind);
-         
-			Console.WriteLine("Coverage: "+_featureMap.EliteMap.Count);
+
+			Console.WriteLine("Map Coverage: "+_featureMap.EliteMap.Count);
+         _map_log.UpdateLog();
       }
    }
 }

@@ -7,6 +7,7 @@ namespace StrategySearch.Search
    class Individual
    {
       public int ID { get; set; }
+      public int EmitterID { get; set; }
       
       public OverallStatistics OverallData { get; set; }
       public StrategyStatistics[] StrategyData { get; set; }
