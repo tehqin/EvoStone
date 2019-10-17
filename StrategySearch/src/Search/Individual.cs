@@ -12,6 +12,8 @@ namespace StrategySearch.Search
       public StrategyStatistics[] StrategyData { get; set; }
       
       public double Fitness { get; set; }
+      public double Delta { get; set; }
+      public bool IsNovel { get; set; }
       public double[] ParamVector { get; set; }
       public double[] Features { get; set; }
 
