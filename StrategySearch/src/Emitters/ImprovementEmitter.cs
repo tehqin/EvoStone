@@ -17,7 +17,9 @@ namespace StrategySearch.Emitters
       private int _numParams;
       private EmitterParams _params;
 
-      private List<Individual> _population;
+      private int _population_count;
+      private List<Individual> _novel_parents;
+      private List<Individual> _improved_parents;
       private FeatureMap _featureMap;
 
 		// CMA Parameters
@@ -32,7 +34,9 @@ namespace StrategySearch.Emitters
          _params = emParams;
 
          NumReleased = 0;
-         _population = new List<Individual>();
+         _population_count = 0;
+         _improved_parents = new List<Individual>();
+         _novel_parents = new List<Individual>();
          _featureMap = featureMap;
       
          if (_params.PopulationSize == -1)
@@ -86,27 +90,25 @@ namespace StrategySearch.Emitters
 
       public void ReturnEvaluatedIndividual(Individual ind)
       {
-         _population.Add(ind);
-         if (_population.Count >= _params.PopulationSize)
+         if (_featureMap.Add(ind))
          {
-				var novels = new List<Individual>();	
-				var improvements = new List<Individual>();	
-				foreach (Individual cur in _population)
-               if (_featureMap.Add(cur))
-               {
-                  if (cur.IsNovel)
-                     novels.Add(cur);
-                  else
-                     improvements.Add(cur);
-               }
-            int numParents = novels.Count + improvements.Count;
+            if (ind.IsNovel)
+               _novel_parents.Add(ind);
+            else
+               _improved_parents.Add(ind);
+         }
+         _population_count++;
+
+         if (_population_count >= _params.PopulationSize)
+         {
+            int numParents = _novel_parents.Count + _improved_parents.Count;
             bool needsRestart = numParents == 0;
             
             // Only update if we have parents.
             if (numParents > 0)
             {
-               var parents = novels.OrderByDescending(o => o.Delta).Concat(
-                  improvements.OrderByDescending(o => o.Delta)).ToList();
+               var parents = _novel_parents.OrderByDescending(o => o.Delta).Concat(
+                  _improved_parents.OrderByDescending(o => o.Delta)).ToList();
 
                // Calculate fresh weights for the number of elites found
                var weights = LA.Vector<double>.Build.Dense(numParents);
@@ -166,7 +168,9 @@ namespace StrategySearch.Emitters
             if (needsRestart)
                reset();
 
-            _population.Clear();
+            _population_count = 0;
+            _novel_parents.Clear();
+            _improved_parents.Clear();
          }
       }
    }
