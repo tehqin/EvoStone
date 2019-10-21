@@ -27,7 +27,9 @@ namespace StrategySearch.Search.CMA_ES
 
 		private LA.Vector<double> _mean;
 		private List<Individual> _population;
+      private int _individualsDispatched;
 		private int _individualsEvaluated;
+		private int _generation;
 
       private MathNet.Numerics.LinearAlgebra.Vector<double> _weights;
 
@@ -41,8 +43,10 @@ namespace StrategySearch.Search.CMA_ES
          _numParams = numParams;
 			_params = searchParams;
 			
-         _individualsEvaluated = 0;
 			_population = new List<Individual>();
+         _individualsDispatched = 0;
+         _individualsEvaluated = 0;
+         _generation = 0;
 
          Reset();
       }
@@ -99,7 +103,7 @@ namespace StrategySearch.Search.CMA_ES
       }
 
 		public bool IsRunning() => _individualsEvaluated < _params.NumToEvaluate;
-      public bool IsBlocking() => false;
+      public bool IsBlocking() => _individualsDispatched > _params.PopulationSize * _params.OverflowFactor;
 
 		public Individual GenerateIndividual()
 		{
@@ -112,6 +116,8 @@ namespace StrategySearch.Search.CMA_ES
 
 			var newIndividual = new Individual(_numParams);
 			newIndividual.ParamVector = p.ToArray();
+         newIndividual.Generation = _generation;
+         _individualsDispatched++;
 			return newIndividual;
 		}
 
@@ -119,21 +125,21 @@ namespace StrategySearch.Search.CMA_ES
 		{
          ind.ID = _individualsEvaluated;
 			_individualsEvaluated++;
+         if (ind.Generation != _generation)
+            return;
+
 			_population.Add(ind);
 			if (_population.Count >= _params.PopulationSize)
 			{
             // Rank solutions
 				var parents = _population.OrderByDescending(o => o.Fitness)
 					.Take(_params.NumParents).ToList();
-            Console.WriteLine("Fitness: "+parents[0].Fitness);
 
-            
             // Recombination of the new mean
 		      LA.Vector<double> oldMean = _mean;
             _mean = LA.Vector<double>.Build.Dense(_numParams);
             for (int i=0; i<_params.NumParents; i++)
                _mean += DenseVector.OfArray(parents[i].ParamVector) * _weights[i]; 
-            //Console.WriteLine("Mean: "+_mean);
 
             // Update the evolution path
             LA.Vector<double> y = _mean - oldMean;
@@ -164,7 +170,8 @@ namespace StrategySearch.Search.CMA_ES
             double sumSquarePs = _ps.DotProduct(_ps);
             _mutationPower *= Math.Exp(Math.Min(1, cn * (sumSquarePs / _numParams - 1) / 2));
 
-
+            _generation++;
+            _individualsDispatched = 0;
             _population.Clear();
 			}
 		}

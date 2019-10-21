@@ -17,7 +17,7 @@ namespace StrategySearch.Emitters
       private int _numParams;
       private EmitterParams _params;
 
-      private int _population_count;
+      private int _populationCount;
       private List<Individual> _parents;
       private FeatureMap _featureMap;
       private LA.Vector<double> _direction;
@@ -27,6 +27,8 @@ namespace StrategySearch.Emitters
       private DecompMatrix _C;
       private LA.Vector<double> _pc, _ps;
       private LA.Vector<double> _mean;
+      private int _individualsDispatched;
+      private int _generation;
 
       public RandomDirectionEmitter(EmitterParams emParams, FeatureMap featureMap, int numParams)
       {
@@ -34,7 +36,9 @@ namespace StrategySearch.Emitters
          _params = emParams;
 
          NumReleased = 0;
-         _population_count = 0;
+         _generation = 0;
+         _populationCount = 0;
+         _individualsDispatched = 0;
          _parents = new List<Individual>();
          _featureMap = featureMap;
       
@@ -73,6 +77,9 @@ namespace StrategySearch.Emitters
          return false;
       }
 
+      public bool IsBlocking() => 
+         _individualsDispatched > _params.PopulationSize * _params.OverflowFactor;
+
       public int NumReleased { get; set; }
 
       public Individual GenerateIndividual()
@@ -86,17 +93,23 @@ namespace StrategySearch.Emitters
 
          var newIndividual = new Individual(_numParams);
          newIndividual.ParamVector = p.ToArray();
+         newIndividual.Generation = _generation;
+         _individualsDispatched++;
          NumReleased++;
          return newIndividual;
       }
 
       public void ReturnEvaluatedIndividual(Individual ind)
       {
-         if (_featureMap.Add(ind))
-            _parents.Add(ind);
-         _population_count++;
+         bool didAdd = _featureMap.Add(ind);
+         if (ind.Generation != _generation)
+            return;
 
-         if (_population_count >= _params.PopulationSize)
+         if (didAdd)
+            _parents.Add(ind);
+         _populationCount++;
+
+         if (_populationCount >= _params.PopulationSize)
          {
             int numParents = _parents.Count;
             bool needsRestart = numParents == 0;
@@ -170,7 +183,9 @@ namespace StrategySearch.Emitters
             if (needsRestart)
                reset();
 
-            _population_count = 0;
+            _generation++;
+            _individualsDispatched = 0;
+            _populationCount = 0;
             _parents.Clear();
          }
       }

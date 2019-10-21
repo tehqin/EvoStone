@@ -65,7 +65,14 @@ namespace StrategySearch.Search.CMA_ME
       }
 
       public bool IsRunning() => _individualsEvaluated < _params.Search.NumToEvaluate;
-      public bool IsBlocking() => false;
+      public bool IsBlocking()
+      {
+         foreach (Emitter em in _emitters)
+            if (!em.IsBlocking())
+               return false;
+         return true;
+      }
+
 
       public Individual GenerateIndividual()
       {
@@ -74,16 +81,22 @@ namespace StrategySearch.Search.CMA_ME
             Console.WriteLine(string.Format("EM[{0}] = {1}", i, _emitters[i].NumReleased));
          }
 
-			int pos = 0;
-			Emitter em = _emitters[pos];
-         for (int i=1; i<_emitters.Count; i++)
+         int pos = 0;
+         Emitter em = null;
+         for (int i=0; i<_emitters.Count; i++)
          {
-            if (em.NumReleased > _emitters[i].NumReleased)
+            if (!_emitters[i].IsBlocking())
             {
-               em = _emitters[i];
-               pos = i;
+               if (em == null || em.NumReleased > _emitters[i].NumReleased)
+               {
+                  em = _emitters[i];
+                  pos = i;
+               }
             }
          }
+
+         if (em == null)
+            return null;
 
          Individual ind = em.GenerateIndividual();
          ind.EmitterID = pos;

@@ -25,6 +25,8 @@ namespace StrategySearch.Emitters
       private DecompMatrix _C;
       private LA.Vector<double> _pc, _ps;
       private LA.Vector<double> _mean;
+      private int _individualsDispatched;
+      private int _generation;
 
       public OptimizingEmitter(EmitterParams emParams, FeatureMap featureMap, int numParams)
       {
@@ -32,6 +34,8 @@ namespace StrategySearch.Emitters
          _params = emParams;
 
          NumReleased = 0;
+         _generation = 0;
+         _individualsDispatched = 0;
          _population = new List<Individual>();
          _featureMap = featureMap;
       
@@ -74,6 +78,9 @@ namespace StrategySearch.Emitters
          return false;
       }
 
+      public bool IsBlocking() => 
+         _individualsDispatched > _params.PopulationSize * _params.OverflowFactor;
+
       public int NumReleased { get; set; }
 
       public Individual GenerateIndividual()
@@ -87,14 +94,19 @@ namespace StrategySearch.Emitters
 
          var newIndividual = new Individual(_numParams);
          newIndividual.ParamVector = p.ToArray();
+         newIndividual.Generation = _generation;
+         _individualsDispatched++;
          NumReleased++;
          return newIndividual;
       }
 
       public void ReturnEvaluatedIndividual(Individual ind)
       {
-         _population.Add(ind);
          _featureMap.Add(ind);
+         if (ind.Generation != _generation)
+            return;
+         
+         _population.Add(ind);
 
          if (_population.Count >= _params.PopulationSize)
          {
@@ -157,6 +169,8 @@ namespace StrategySearch.Emitters
             if (needsRestart)
                reset();
 
+            _generation++;
+            _individualsDispatched = 0;
             _population.Clear();
          }
       }
