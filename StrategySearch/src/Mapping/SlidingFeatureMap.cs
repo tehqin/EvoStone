@@ -117,6 +117,11 @@ namespace StrategySearch.Mapping
             AddToMap(cur);
       }
 
+      public double GetFeatureScalar(int i)
+      {
+         return 1.0;
+      }
+
       public bool Add(Individual toAdd)
       {
          if (_allIndividuals.Count % _remapFrequency == 0)

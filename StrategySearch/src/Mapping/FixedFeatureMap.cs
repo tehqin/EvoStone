@@ -111,6 +111,11 @@ namespace StrategySearch.Mapping
             AddToMap(cur);
       }
 
+      public double GetFeatureScalar(int i)
+      {
+         return _highGroupBound[i] - _lowGroupBound[i];
+      }
+
       public bool Add(Individual toAdd)
       {
          _numIndividualsEvaluated++;

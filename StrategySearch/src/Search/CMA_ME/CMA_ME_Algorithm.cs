@@ -28,6 +28,10 @@ namespace StrategySearch.Search.CMA_ME
             {
                if (ep.Type.Equals("Improvement"))
                   _emitters.Add(new ImprovementEmitter(ep, _featureMap, numParams));
+               else if (ep.Type.Equals("Optimizing"))
+                  _emitters.Add(new OptimizingEmitter(ep, _featureMap, numParams));
+               else if (ep.Type.Equals("RandomDirection"))
+                  _emitters.Add(new RandomDirectionEmitter(ep, _featureMap, numParams));
                else
                   Console.WriteLine("Emitter Not Found: "+ep.Type);
             }
