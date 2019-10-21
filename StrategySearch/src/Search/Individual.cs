@@ -8,6 +8,7 @@ namespace StrategySearch.Search
    {
       public int ID { get; set; }
       public int EmitterID { get; set; }
+      public int Generation { get; set; }
       
       public OverallStatistics OverallData { get; set; }
       public StrategyStatistics[] StrategyData { get; set; }
