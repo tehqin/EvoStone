@@ -92,7 +92,8 @@ namespace StrategySearch.Search.MapElites
             ind.Features[i] = ind.GetStatByName(_params.Map.Features[i].Name);
 
          _featureMap.Add(ind);
-         _map_log.UpdateLog();
+         if (_individualsEvaluated % 100 == 0)
+            _map_log.UpdateLog();
       }
    }
 }

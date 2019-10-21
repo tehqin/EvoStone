@@ -116,7 +116,8 @@ namespace StrategySearch.Search.CMA_ME
 			_emitters[ind.EmitterID].ReturnEvaluatedIndividual(ind);
 
 			Console.WriteLine("Map Coverage: "+_featureMap.EliteMap.Count);
-         _map_log.UpdateLog();
+         if (_individualsEvaluated % 100 == 0)
+            _map_log.UpdateLog();
       }
    }
 }
