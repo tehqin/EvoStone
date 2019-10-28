@@ -26,6 +26,7 @@ namespace StrategySearch.Emitters
       private LA.Vector<double> _pc, _ps;
       private LA.Vector<double> _mean;
       private int _individualsDispatched;
+      private int _individualsEvaluated;
       private int _generation;
 
       public OptimizingEmitter(EmitterParams emParams, FeatureMap featureMap, int numParams)
@@ -59,6 +60,8 @@ namespace StrategySearch.Emitters
          _ps = LA.Vector<double>.Build.Dense(_numParams);
 
          _C = new DecompMatrix(_numParams);
+
+         _individualsEvaluated = 0;
       }
 
       private bool checkStop(List<Individual> parents)
@@ -107,6 +110,7 @@ namespace StrategySearch.Emitters
             return;
          
          _population.Add(ind);
+         _individualsEvaluated++;
 
          if (_population.Count >= _params.PopulationSize)
          {
@@ -142,7 +146,7 @@ namespace StrategySearch.Emitters
             LA.Vector<double> z = _C.Invsqrt * y;
             _ps = (1.0-cs) * _ps + (Math.Sqrt(cs * (2.0 - cs) * mueff) / _mutationPower) * z;
             double left = _ps.DotProduct(_ps) / _numParams / 
-                  (1.0-Math.Pow(1.0-cs, 2 * NumReleased / _params.PopulationSize));
+                  (1.0-Math.Pow(1.0-cs, 2 * _individualsEvaluated / _params.PopulationSize));
             double right = 2.0 + 4.0 / (_numParams+1.0);
             double hsig = left < right ? 1 : 0;
             _pc = (1.0 - cc) * _pc + hsig * Math.Sqrt(cc * (2.0 - cc) * mueff) * y;

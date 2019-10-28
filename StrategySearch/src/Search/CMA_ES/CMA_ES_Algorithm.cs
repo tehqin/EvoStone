@@ -27,8 +27,10 @@ namespace StrategySearch.Search.CMA_ES
 
 		private LA.Vector<double> _mean;
 		private List<Individual> _population;
+      private Individual _bestIndividual;
       private int _individualsDispatched;
 		private int _individualsEvaluated;
+		private int _individualsEvaluatedTotal;
 		private int _generation;
 
       private MathNet.Numerics.LinearAlgebra.Vector<double> _weights;
@@ -45,8 +47,9 @@ namespace StrategySearch.Search.CMA_ES
 			
 			_population = new List<Individual>();
          _individualsDispatched = 0;
-         _individualsEvaluated = 0;
+         _individualsEvaluatedTotal = 0;
          _generation = 0;
+         _bestIndividual = null;
 
          Reset();
       }
@@ -69,6 +72,13 @@ namespace StrategySearch.Search.CMA_ES
          _mueff = sum_weights * sum_weights / sum_squares;
 
          _mean = LA.Vector<double>.Build.Dense(_numParams);
+         if (_bestIndividual != null)
+         {
+            for (int i=0; i<_numParams; i++)
+               _mean[i] = _bestIndividual.ParamVector[i];
+         }
+         Console.WriteLine("RESET");
+         Console.WriteLine(_mean);
 
          _cc = (4+_mueff/_numParams) / (_numParams+4 + 2*_mueff/_numParams);
          _cs = (_mueff+2) / (_numParams+_mueff+5);
@@ -83,6 +93,8 @@ namespace StrategySearch.Search.CMA_ES
          _ps = LA.Vector<double>.Build.Dense(_numParams);
 		
          _C = new DecompMatrix(_numParams);
+         
+         _individualsEvaluated = 0;
       }
 
       public bool CheckStop(List<Individual> parents)
@@ -102,7 +114,7 @@ namespace StrategySearch.Search.CMA_ES
          return false;      
       }
 
-		public bool IsRunning() => _individualsEvaluated < _params.NumToEvaluate;
+		public bool IsRunning() => _individualsEvaluatedTotal < _params.NumToEvaluate;
       public bool IsBlocking() => _individualsDispatched > _params.PopulationSize * _params.OverflowFactor;
 
 		public Individual GenerateIndividual()
@@ -123,17 +135,24 @@ namespace StrategySearch.Search.CMA_ES
 
 		public void ReturnEvaluatedIndividual(Individual ind)
 		{
-         ind.ID = _individualsEvaluated;
-			_individualsEvaluated++;
+         ind.ID = _individualsEvaluatedTotal;
+			_individualsEvaluatedTotal++;
+
+         if (_bestIndividual == null || _bestIndividual.Fitness < ind.Fitness)
+            _bestIndividual = ind;
+
          if (ind.Generation != _generation)
             return;
 
+         // Note that we don't use overflow individuals in adaptation calculations.
+			_individualsEvaluated++;
 			_population.Add(ind);
 			if (_population.Count >= _params.PopulationSize)
 			{
             // Rank solutions
 				var parents = _population.OrderByDescending(o => o.Fitness)
 					.Take(_params.NumParents).ToList();
+            Console.WriteLine(parents[0].Fitness);
 
             // Recombination of the new mean
 		      LA.Vector<double> oldMean = _mean;

@@ -60,8 +60,8 @@ namespace StrategySearch.Search.MapElites
 
       public bool IsRunning() => _individualsEvaluated < _params.Search.NumToEvaluate;
       public bool IsBlocking() => 
-         _individualsDispatched == _params.Search.InitialPopulation &&
-         _individualsEvaluated < _params.Search.InitialPopulation;
+         _individualsDispatched >= _params.Search.InitialPopulation &&
+         _individualsEvaluated == 0;
 
       public Individual GenerateIndividual()
       {

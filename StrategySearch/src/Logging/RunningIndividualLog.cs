@@ -40,6 +40,7 @@ namespace StrategySearch.Logging
             string[] individualLabels = {
                   "Individual",
                   "Emitter",
+                  "Generation",
                };
 
             var dataLabels = individualLabels
@@ -75,6 +76,7 @@ namespace StrategySearch.Logging
             string[] individualData = {
                   cur.ID.ToString(),
                   cur.EmitterID.ToString(),
+                  cur.Generation.ToString(),
                };
 
             var overallStatistics =
