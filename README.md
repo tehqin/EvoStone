@@ -32,11 +32,11 @@ The first parameter passed is the config file for the experiment. Here we are ru
 dotnet bin/DeckEvaluator.dll 1
 ```
 
-This command starts a new DeckEvaluator node. The node will take a strategy generated from the search algorithm and play 200 games using that strategy. Once the games are complete, the node will send results back to the control node and await a new strategy.
+This command starts a new DeckEvaluator node. The first parameter is the node ID. You can start multiple nodes locally, but you must specify a different node for each worker. The node will take a strategy generated from the search algorithm and play 200 games using that strategy. Once the games are complete, the node will send results back to the control node and await a new strategy.
 
 ## Running Experiments (Distributed)
 
-If you run the search locally, you will realize the experiment is a bit slow. That is why the search was designed to be distributed and run on a HPC cluster. Included in the `TestBed/StrategySearch` folder are two GridEngine scripts. You can start an experiment running the following commands.
+If you run the search locally, you will realize the experiment is a bit slow. That is why the search was designed to be distributed and run on an HPC cluster. Included in the `TestBed/StrategySearch` folder are two GridEngine scripts. You can start an experiment running the following commands.
 
 ```
 qsub startSearch.sh
