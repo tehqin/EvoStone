@@ -23,3 +23,5 @@ The setup script created three empty folders in the `TestBed/StrategySearch` dir
 ## Running Experiments (Distributed)
 
 ## Config Files
+
+## Adding New Search Algorithms
