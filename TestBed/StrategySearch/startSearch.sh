@@ -14,7 +14,7 @@
 #$ -j y
 # Send mail at submission and completion of script
 # Specify GPU queue
-#$ -q short
+#$ -q medium
 #$ -l mem_free=14.0G
 /bin/echo Running on host: `hostname`.
 /bin/echo In directory: `pwd`
@@ -23,4 +23,4 @@
 # Load dotnet module
 module load dotnet/2.2.300
 #Full path to executable
-dotnet bin/StrategySearch.dll config/rogue_cma_es_exp.tml
+dotnet bin/StrategySearch.dll config/rogue_me_exp.tml
