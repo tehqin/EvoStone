@@ -26,7 +26,7 @@ First we need to start the control node responsible for running our search (CMA-
 dotnet bin/StrategySearch.dll config/rogue_me_exp.tml
 ```
 
-The first parameter passed is the config file for the experiment. Here we are running MAP-Elites using the Tempo Rogue deck. However, the search isn't moving because it doesn't have any worker nodes to run work. To start a worker node, run the following command.
+The first parameter passed is the config file for the experiment. Here we are running MAP-Elites using the Tempo Rogue deck. However, the search isn't moving because it doesn't have any worker nodes to play games. To start a worker node, run the following command.
 
 ```
 dotnet bin/DeckEvaluator.dll 1
