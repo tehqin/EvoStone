@@ -1,4 +1,5 @@
+OverflowFactor = 1.1
 PopulationSize = 500
 NumToEvaluate = 50000
 NumParents = 250
-MutationPower = 0.8
+MutationPower = 0.05

@@ -5,15 +5,15 @@ MutationPower = 0.05
 
 [Map]
 Type = "FixedFeature"
-StartSize = 80
-EndSize = 80
+StartSize = 100
+EndSize = 100
 
 [[Map.Features]]
 Name = "NumTurns"
 MinValue = 5.0
-MaxValue = 20.0
+MaxValue = 15.0
 
 [[Map.Features]]
 Name = "HandSize"
-MinValue = 0.0
-MaxValue = 10.0
+MinValue = 1.0
+MaxValue = 7.0
