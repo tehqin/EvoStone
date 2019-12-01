@@ -7,7 +7,7 @@ This project is designed to be run on a High-Performance Computing (HPC) cluster
 ## Installation
 To install the project, you need to install the [.NET](https://dotnet.microsoft.com/download) developer toolkit for your system. You may also need the [NuGet](https://docs.microsoft.com/en-us/nuget/install-nuget-client-tools) client tools for updating dependencies for the project. Included in this project is a `setup.py` script to make installation easier. Users can install Python 3 or follow the commands in the script for installation.
 
-Next you need to compile [SabberStone](https://github.com/HearthSim/SabberStone), the Hearthstone simulator for running games. Follow the instructions on the SabberStone github to generate the `SabberStone.dll` DLL.
+Next you need to compile [SabberStone](https://github.com/HearthSim/SabberStone), the Hearthstone simulator for running games. Follow the instructions on the SabberStone github compile the project into `SabberStone.dll`.
 
 Next move to the `TestBed/StrategySearch` directory. From here you can run the `setup.py` script.
 
