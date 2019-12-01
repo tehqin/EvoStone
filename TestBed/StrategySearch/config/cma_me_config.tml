@@ -1,0 +1,24 @@
+[Search]
+NumToEvaluate = 50000
+
+[Map]
+Type = "FixedFeature"
+StartSize = 100
+EndSize = 100
+
+[[Map.Features]]
+Name = "NumTurns"
+MinValue = 5.0
+MaxValue = 15.0
+
+[[Map.Features]]
+Name = "HandSize"
+MinValue = 1.0
+MaxValue = 7.0
+
+[[Emitters]]
+Type = "Improvement"
+Count = 15
+OverflowFactor = 1.2
+PopulationSize = 37
+MutationPower = 0.05

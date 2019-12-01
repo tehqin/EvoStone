@@ -4,12 +4,12 @@ DeckPools = ["resources/decks/pools/eliteDecks.tml",
              "resources/decks/pools/metaDecks.tml"]
 
 [[Evaluation.PlayerStrategies]]
-NumGames = 1
+NumGames = 200
 Strategy = "NeuralNet"
 
 [Search]
-Type = "MAP-Elites"
-ConfigFilename = "config/me_config.tml"
+Type = "CMA-ME"
+ConfigFilename = "config/cma_me_config.tml"
 
 [Network]
 LayerSizes = [16, 5, 4, 1]
