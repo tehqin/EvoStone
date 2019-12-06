@@ -1,6 +1,6 @@
 # EvoStone
 
-This project is the .NET successor to [EvoSabber](https://github.com/tehqin/EvoSabber) and implements the Hearthstone experiments for the paper "Covariance Matrix Adaptation for the Rapid Illumination of Behavior Space". The project contains distributed implementations of evolutionary algorithms CMA-ES, MAP-Elites, and CMA-ME, the new algorithm detailed in the paper. 
+This project is the .NET successor to [EvoSabber](https://github.com/tehqin/EvoSabber) and implements the Hearthstone experiments for the paper *[Covariance Matrix Adaptation for the Rapid Illumination of Behavior Space](https://arxiv.org/abs/1912.02400)*. The project contains distributed implementations of evolutionary algorithms CMA-ES, MAP-Elites, and CMA-ME, the new algorithm detailed in the paper. 
 
 This project is designed to be run on a High-Performance Computing (HPC) cluster and is divided into two subprojects `DeckEvaluator` (for running Hearthstone games and collecting data from those games) and `StrategySearch` (for running distributed versions of each evolutionary algorithm). Unlike EvoSabber, EvoStone is a unified .NET project and all subprojects can be compiled through a single command.
 
