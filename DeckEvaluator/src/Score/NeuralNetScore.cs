@@ -28,7 +28,7 @@ namespace SabberStoneCoreAi.Score
 			if (HeroHp < 1)
 				return Int32.MinValue;
 
-         var inputVector = new double[16];
+         var inputVector = new double[15];
          inputVector[0] = HeroHp;
          inputVector[1] = OpHeroHp;
          inputVector[2] = HeroAtk;
@@ -46,9 +46,6 @@ namespace SabberStoneCoreAi.Score
          inputVector[12] = OpMinionTotHealth;
          inputVector[13] = MinionTotHealthTaunt;
          inputVector[14] = OpMinionTotHealthTaunt;
-
-         // Bias input
-         inputVector[15] = 1.0;
 
          double result = _network.Evaluate(inputVector)[0];
          result *= 1000000;

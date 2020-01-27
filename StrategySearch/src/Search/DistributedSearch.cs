@@ -78,7 +78,10 @@ namespace StrategySearch.Search
             int[] layerSizes = config.Network.LayerSizes;
             numParams = 0;
             for (int i=0; i<layerSizes.Length-1; i++)
-               numParams += layerSizes[i] * layerSizes[i+1];
+            {
+               numParams += layerSizes[i] * layerSizes[i+1]; // edge weights
+               numParams += layerSizes[i+1]; // bias weights
+            }
          }
          Console.WriteLine(string.Format("Search for {0} parameters...", numParams));
 
