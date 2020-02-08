@@ -1,0 +1,31 @@
+PoolName = "Elite Decks"
+
+[[Decks]]
+DeckName = "Aggro Hunter"
+ClassName = "Hunter"
+CardList = ["Fen Creeper","Earthen Ring Farseer","Earthen Ring Farseer","River Crocolisk","Kobold Geomancer","Southsea Deckhand","Stormpike Commando","Murloc Raider","Razorfen Hunter","Reckless Rocketeer","Wisp","Timber Wolf","Tundra Rhino","Young Priestess","Worgen Infiltrator","Silvermoon Guardian","Leper Gnome","Dark Iron Dwarf","Pint-Sized Summoner","Arcane Golem","Defender of Argus","Abomination","Eaglehorn Bow","Unleash the Hounds","Snake Trap","Priestess of Elune","Nightblade","Hungry Crab","Animal Companion","Animal Companion"]
+
+[[Decks]]
+DeckName = "Control Hunter"
+ClassName = "Hunter"
+CardList = ["Earthen Ring Farseer","Ironforge Rifleman","Stormpike Commando","Bloodfen Raptor","Sen'jin Shieldmasta","Booty Bay Bodyguard","Venture Co. Mercenary","Lightwarden","Young Priestess","Worgen Infiltrator","Voodoo Doctor","Sunwalker","Argent Commander","Pint-Sized Summoner","Pint-Sized Summoner","Lorewalker Cho","Demolisher","Dire Wolf Alpha","Scavenging Hyena","King Krush","Onyxia","Priestess of Elune","Bloodsail Raider","Knife Juggler","Knife Juggler","Wild Pyromancer","Bloodsail Corsair","Master Swordsmith","Flesheating Ghoul","Flesheating Ghoul"]
+
+[[Decks]]
+DeckName = "Aggro Paladin"
+ClassName = "Paladin"
+CardList = ["Goldshire Footman","Blessing of Kings","Consecration","Consecration","Truesilver Champion","Ironfur Grizzly","Lightwarden","Lightwarden","Young Priestess","Worgen Infiltrator","Voodoo Doctor","Voodoo Doctor","King Mukla","Scarlet Crusader","Scarlet Crusader","Mana Addict","Sunfury Protector","Acidic Swamp Ooze","Secretkeeper","Secretkeeper","Eye for an Eye","Dire Wolf Alpha","Baron Geddon","Lay on Hands","Avenging Wrath","Murloc Tidehunter","The Beast","Southsea Captain","Millhouse Manastorm","Stampeding Kodo"]
+
+[[Decks]]
+DeckName = "Control Paladin"
+ClassName = "Paladin"
+CardList = ["Fen Creeper","Light's Justice","Consecration","Consecration","Raid Leader","Raid Leader","Ironfur Grizzly","Stonetusk Boar","Stormwind Champion","Young Priestess","Shattered Sun Cleric","Thrallmar Farseer","Sunwalker","Questing Adventurer","Dark Iron Dwarf","Mind Control Tech","Mind Control Tech","Coldlight Seer","Tirion Fordring","Raging Worgen","Raging Worgen","Murloc Warleader","Alexstrasza","Priestess of Elune","Imp Master","Hungry Crab","Bloodsail Raider","Bloodsail Raider","Wild Pyromancer","Master Swordsmith"]
+
+[[Decks]]
+DeckName = "Aggro Warlock"
+ClassName = "Warlock"
+CardList = ["Southsea Deckhand","Lord of the Arena","Sen'jin Shieldmasta","Injured Blademaster","Wisp","Lightwarden","Young Priestess","Angry Chicken","Worgen Infiltrator","Worgen Infiltrator","King Mukla","Novice Engineer","Scarlet Crusader","Leper Gnome","Dark Iron Dwarf","Youthful Brewmaster","Youthful Brewmaster","Pint-Sized Summoner","Defender of Argus","Mortal Coil","Succubus","Murloc Warleader","Murloc Tidecaller","Sea Giant","Blood Knight","Nightblade","Bloodsail Raider","Wild Pyromancer","Faerie Dragon","Faerie Dragon"]
+
+[[Decks]]
+DeckName = "Control Warlock"
+ClassName = "Warlock"
+CardList = ["Fen Creeper","Silverback Patriarch","Ravenholdt Assassin","Bloodfen Raptor","Bloodfen Raptor","Sen'jin Shieldmasta","Sen'jin Shieldmasta","The Black Knight","Voodoo Doctor","Scarlet Crusader","Sunwalker","Sunwalker","Mind Control Tech","Defender of Argus","Loot Hoarder","Dire Wolf Alpha","Void Terror","Siphon Soul","Doomguard","Amani Berserker","Amani Berserker","Mogu'shan Warden","Murloc Tidecaller","Alexstrasza","Dalaran Mage","Illidan Stormrage","Bloodsail Raider","Knife Juggler","Millhouse Manastorm","Flesheating Ghoul"]

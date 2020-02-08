@@ -1,0 +1,35 @@
+[[Opponents]]
+Portion = 1
+Strategy = "Aggro"
+DeckPool = "Elite Decks"
+DeckName = "Aggro Hunter"
+
+[[Opponents]]
+Portion = 1
+Strategy = "Control"
+DeckPool = "Elite Decks"
+DeckName = "Control Hunter"
+
+[[Opponents]]
+Portion = 1
+Strategy = "Aggro"
+DeckPool = "Elite Decks"
+DeckName = "Aggro Paladin"
+
+[[Opponents]]
+Portion = 1
+Strategy = "Control"
+DeckPool = "Elite Decks"
+DeckName = "Control Paladin"
+
+[[Opponents]]
+Portion = 1
+Strategy = "Aggro"
+DeckPool = "Elite Decks"
+DeckName = "Aggro Warlock"
+
+[[Opponents]]
+Portion = 1
+Strategy = "Control"
+DeckPool = "Elite Decks"
+DeckName = "Control Warlock"

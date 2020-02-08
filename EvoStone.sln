@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeckEvaluator", "DeckEvalua
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StrategySearch", "StrategySearch\StrategySearch.csproj", "{01C65439-A3E8-4077-BF76-C69026AA8852}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeckSearch", "DeckSearch\DeckSearch.csproj", "{5E3E7140-A44C-4AD4-AC0C-A89A081861FB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,5 +27,9 @@ Global
 		{01C65439-A3E8-4077-BF76-C69026AA8852}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{01C65439-A3E8-4077-BF76-C69026AA8852}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{01C65439-A3E8-4077-BF76-C69026AA8852}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E3E7140-A44C-4AD4-AC0C-A89A081861FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E3E7140-A44C-4AD4-AC0C-A89A081861FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E3E7140-A44C-4AD4-AC0C-A89A081861FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E3E7140-A44C-4AD4-AC0C-A89A081861FB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

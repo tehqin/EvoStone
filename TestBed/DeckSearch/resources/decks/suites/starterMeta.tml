@@ -1,0 +1,35 @@
+[[Opponents]]
+Portion = 1
+Strategy = "Aggro"
+DeckPool = "Starter Decks"
+DeckName = "Hunter"
+
+[[Opponents]]
+Portion = 1
+Strategy = "Control"
+DeckPool = "Starter Decks"
+DeckName = "Hunter"
+
+[[Opponents]]
+Portion = 1
+Strategy = "Aggro"
+DeckPool = "Starter Decks"
+DeckName = "Paladin"
+
+[[Opponents]]
+Portion = 1
+Strategy = "Control"
+DeckPool = "Starter Decks"
+DeckName = "Paladin"
+
+[[Opponents]]
+Portion = 1
+Strategy = "Aggro"
+DeckPool = "Starter Decks"
+DeckName = "Warlock"
+
+[[Opponents]]
+Portion = 1
+Strategy = "Control"
+DeckPool = "Starter Decks"
+DeckName = "Warlock"

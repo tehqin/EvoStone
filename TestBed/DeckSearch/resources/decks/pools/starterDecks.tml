@@ -1,0 +1,117 @@
+PoolName = "Starter Decks"
+
+[[Decks]]
+DeckName = "Druid"
+ClassName = "Druid"
+CardList = ["Innervate", "Innervate", "Claw", "Claw", "Elven Archer", 
+   "Elven Archer", "Mark of the Wild", "Mark of the Wild", 
+   "River Crocolisk", "River Crocolisk", "Wild Growth", "Wild Growth", 
+   "Healing Touch", "Healing Touch", "Silverback Patriarch", 
+   "Silverback Patriarch", "Chillwind Yeti", "Chillwind Yeti", 
+   "Oasis Snapjaw", "Oasis Snapjaw", "Darkscale Healer", "Darkscale Healer", 
+   "Nightblade", "Nightblade", "Boulderfist Ogre", "Boulderfist Ogre", 
+   "Lord of the Arena", "Lord of the Arena", "Core Hound", "Core Hound"]
+
+[[Decks]]
+DeckName = "Hunter"
+ClassName = "Hunter"
+CardList = ["Arcane Shot", "Arcane Shot", "Stonetusk Boar", 
+   "Stonetusk Boar", "Timber Wolf", "Timber Wolf", "Tracking", 
+   "Tracking", "Bloodfen Raptor", "Bloodfen Raptor", "River Crocolisk", 
+   "River Crocolisk", "Ironforge Rifleman", "Ironforge Rifleman", 
+   "Raid Leader", "Raid Leader", "Razorfen Hunter", "Razorfen Hunter", 
+   "Silverback Patriarch", "Silverback Patriarch", "Houndmaster", 
+   "Houndmaster", "Multi-Shot", "Multi-Shot", "Oasis Snapjaw", 
+   "Oasis Snapjaw", "Stormpike Commando", "Stormpike Commando", 
+   "Core Hound", "Core Hound"]
+
+[[Decks]]
+DeckName = "Mage"
+ClassName = "Mage"
+CardList = ["Arcane Missiles", "Arcane Missiles", "Murloc Raider", 
+   "Murloc Raider", "Arcane Explosion", "Arcane Explosion", 
+   "Bloodfen Raptor", "Bloodfen Raptor", "Novice Engineer", 
+   "Novice Engineer", "River Crocolisk", "River Crocolisk", 
+   "Arcane Intellect", "Arcane Intellect", "Raid Leader", 
+   "Raid Leader", "Wolfrider", "Wolfrider", "Fireball", 
+   "Fireball", "Oasis Snapjaw", "Oasis Snapjaw", "Polymorph", 
+   "Polymorph", "Sen'jin Shieldmasta", "Sen'jin Shieldmasta", 
+   "Nightblade", "Nightblade", "Boulderfist Ogre", "Boulderfist Ogre"]
+
+[[Decks]]
+DeckName = "Paladin"
+ClassName = "Paladin"
+CardList = ["Blessing of Might", "Blessing of Might", "Goldshire Footman", 
+   "Goldshire Footman", "Hand of Protection", "Hand of Protection", 
+   "Light's Justice", "Light's Justice", "Stonetusk Boar", 
+   "Stonetusk Boar", "Holy Light", "Holy Light", "Ironforge Rifleman", 
+   "Ironforge Rifleman", "Raid Leader", "Raid Leader", "Gnomish Inventor", 
+   "Gnomish Inventor", "Hammer of Wrath", "Hammer of Wrath", 
+   "Stormwind Knight", "Stormwind Knight", "Nightblade", "Nightblade", 
+   "Stormpike Commando", "Stormpike Commando", "Lord of the Arena", 
+   "Lord of the Arena", "Stormwind Champion", "Stormwind Champion"]
+
+[[Decks]]
+DeckName = "Priest"
+ClassName = "Priest"
+CardList = ["Elven Archer", "Elven Archer", "Holy Smite", "Holy Smite", 
+   "Northshire Cleric", "Northshire Cleric", "Power Word: Shield", 
+   "Power Word: Shield", "Voodoo Doctor", "Voodoo Doctor", 
+   "Bloodfen Raptor", "Bloodfen Raptor", "Frostwolf Grunt", 
+   "Frostwolf Grunt", "Mind Blast", "Mind Blast", "Shadow Word: Pain", 
+   "Shadow Word: Pain", "Shattered Sun Cleric", "Shattered Sun Cleric", 
+   "Silverback Patriarch", "Silverback Patriarch", "Chillwind Yeti", 
+   "Chillwind Yeti", "Sen'jin Shieldmasta", "Sen'jin Shieldmasta", 
+   "Gurubashi Berserker", "Gurubashi Berserker", "Core Hound", 
+   "Core Hound"]
+
+[[Decks]]
+DeckName = "Rogue"
+ClassName = "Rogue"
+CardList = ["Backstab", "Backstab", "Deadly Poison", "Deadly Poison",
+   "Elven Archer", "Elven Archer", "Goldshire Footman", 
+   "Goldshire Footman", "Sinister Strike", "Sinister Strike", 
+   "Bloodfen Raptor", "Bloodfen Raptor", "Novice Engineer", 
+   "Novice Engineer", "Sap", "Sap", "Ironforge Rifleman", 
+   "Ironforge Rifleman", "Dragonling Mechanic", "Dragonling Mechanic", 
+   "Gnomish Inventor", "Gnomish Inventor", "Stormwind Knight", 
+   "Stormwind Knight", "Assassinate", "Assassinate", "Nightblade", 
+   "Nightblade", "Stormpike Commando", "Stormpike Commando"]
+
+[[Decks]]
+DeckName = "Shaman"
+ClassName = "Shaman"
+CardList = ["Ancestral Healing", "Ancestral Healing", "Frost Shock", 
+   "Frost Shock", "Stonetusk Boar", "Stonetusk Boar", "Voodoo Doctor",
+   "Voodoo Doctor", "Frostwolf Grunt", "Frostwolf Grunt",
+   "Rockbiter Weapon", "Rockbiter Weapon", "Windfury", "Windfury",
+   "Raid Leader", "Raid Leader", "Wolfrider", "Wolfrider", 
+   "Chillwind Yeti", "Chillwind Yeti", "Hex", "Hex", "Sen'jin Shieldmasta",
+   "Sen'jin Shieldmasta", "Booty Bay Bodyguard", "Booty Bay Bodyguard",
+   "Frostwolf Warlord", "Frostwolf Warlord", "Reckless Rocketeer",
+   "Reckless Rocketeer"]
+
+[[Decks]]
+DeckName = "Warlock"
+ClassName = "Warlock"
+CardList = ["Murloc Raider", "Murloc Raider", "Voidwalker", "Voidwalker",
+   "Voodoo Doctor", "Voodoo Doctor", "Kobold Geomancer", 
+   "Kobold Geomancer", "River Crocolisk", "River Crocolisk", "Succubus",
+   "Succubus", "Drain Life", "Drain Life", "Shadow Bolt", "Shadow Bolt",
+   "Wolfrider", "Wolfrider", "Chillwind Yeti", "Chillwind Yeti", 
+   "Hellfire", "Hellfire", "Ogre Magi", "Ogre Magi", "Darkscale Healer",
+   "Darkscale Healer", "Reckless Rocketeer", "Reckless Rocketeer",
+   "War Golem", "War Golem"]
+
+[[Decks]]
+DeckName = "Warrior"
+ClassName = "Warrior"
+CardList = ["Charge", "Charge", "Murloc Raider", "Murloc Raider", "Execute",
+   "Execute", "Frostwolf Grunt", "Frostwolf Grunt", "Heroic Strike", 
+   "Heroic Strike", "Murloc Tidehunter", "Murloc Tidehunter", 
+   "Fiery War Axe", "Fiery War Axe", "Razorfen Hunter", "Razorfen Hunter", 
+   "Warsong Commander", "Warsong Commander", "Wolfrider", "Wolfrider",
+   "Dragonling Mechanic", "Dragonling Mechanic", "Sen'jin Shieldmasta",
+   "Sen'jin Shieldmasta", "Gurubashi Berserker", "Gurubashi Berserker",
+   "Boulderfist Ogre", "Boulderfist Ogre", "Lord of the Arena",
+   "Lord of the Arena"]
