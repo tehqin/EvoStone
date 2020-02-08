@@ -3,8 +3,12 @@ OpponentDeckSuite = "resources/decks/suites/starterMeta.tml"
 DeckPools = ["resources/decks/pools/starterDecks.tml"]
 
 [[Evaluation.PlayerStrategies]]
-NumGames = 1
+NumGames = 100
 Strategy = "Aggro"
+
+[[Evaluation.PlayerStrategies]]
+NumGames = 100
+Strategy = "Control"
 
 [Deckspace]
 HeroClass = "warlock"
