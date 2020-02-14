@@ -3,6 +3,11 @@ import shutil
 import os
 import subprocess
 
+# Make all the directories that are required for running EvoStone
+dirs = ['bin', 'active', 'boxes', 'logs']
+for cur_dir in dirs:
+    os.makedirs(cur_dir, exist_ok=True)
+
 # First build the entire project
 subprocess.call(['dotnet', 'publish', '--configuration', 'Release', '../..'])
 
