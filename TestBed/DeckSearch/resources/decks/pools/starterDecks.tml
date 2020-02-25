@@ -96,8 +96,8 @@ DeckName = "Warlock"
 ClassName = "Warlock"
 CardList = ["Murloc Raider", "Murloc Raider", "Voidwalker", "Voidwalker",
    "Voodoo Doctor", "Voodoo Doctor", "Kobold Geomancer", 
-   "Kobold Geomancer", "River Crocolisk", "River Crocolisk", "Succubus",
-   "Succubus", "Drain Life", "Drain Life", "Shadow Bolt", "Shadow Bolt",
+   "Kobold Geomancer", "River Crocolisk", "River Crocolisk", "Felstalker",
+   "Felstalker", "Drain Life", "Drain Life", "Shadow Bolt", "Shadow Bolt",
    "Wolfrider", "Wolfrider", "Chillwind Yeti", "Chillwind Yeti", 
    "Hellfire", "Hellfire", "Ogre Magi", "Ogre Magi", "Darkscale Healer",
    "Darkscale Healer", "Reckless Rocketeer", "Reckless Rocketeer",
