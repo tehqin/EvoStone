@@ -56,7 +56,7 @@ namespace DeckSearch.Search.MapElites
       public Individual GenerateIndividual(List<Card> cardSet)
       {
          _individualsDispatched++;
-         return _individualsDispatched < _params.InitialPopulation ?
+         return _individualsDispatched <= _params.InitialPopulation ?
                 Individual.GenerateRandomIndividual(cardSet) :
                 _featureMap.GetRandomElite().Mutate();
       }
