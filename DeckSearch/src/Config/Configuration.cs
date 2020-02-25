@@ -32,7 +32,7 @@ namespace DeckSearch.Config
    class FeatureParams
    {
       public string Name { get; set; }
-      public int MinValue { get; set; } 
-      public int MaxValue { get; set; } 
+      public double MinValue { get; set; } 
+      public double MaxValue { get; set; } 
    }
 }
