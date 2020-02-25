@@ -30,13 +30,13 @@ namespace DeckSearch.Mapping
       private List<double>[] _groupBoundaries;
       private List<string> _eliteIndices;
 
-      public SlidingFeatureMap(Configuration config, MapSizer groupSizer)
+      public SlidingFeatureMap(int numToEvaluate, MapParams config, MapSizer groupSizer)
       {
          _allIndividuals = new List<Individual>();
          _groupSizer = groupSizer;
-         _maxIndividualsToEvaluate = config.Search.NumToEvaluate;
-         _remapFrequency = config.Map.RemapFrequency;
-         NumFeatures = config.Map.Features.Length;
+         _maxIndividualsToEvaluate = numToEvaluate;
+         _remapFrequency = config.RemapFrequency;
+         NumFeatures = config.Features.Length;
       
          _groupBoundaries = new List<double>[NumFeatures];
       }
