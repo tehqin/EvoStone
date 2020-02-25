@@ -44,6 +44,11 @@ namespace DeckSearch.Mapping
             _lowGroupBound[i] = config.Map.Features[i].MinValue;
             _highGroupBound[i] = config.Map.Features[i].MaxValue;
          }
+
+
+         _eliteIndices = new List<string>();
+         EliteMap = new Dictionary<string,Individual>();
+         CellCount = new Dictionary<string,int>();
       }
 
       private int GetFeatureIndex(int featureId, double feature)
@@ -112,5 +117,5 @@ namespace DeckSearch.Mapping
          string index = _eliteIndices[pos];
          return EliteMap[index];
       }
-   }
+  }
 }
