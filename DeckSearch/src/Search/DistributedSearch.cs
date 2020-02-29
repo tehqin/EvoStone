@@ -15,6 +15,7 @@ using SabberStoneUtil.Messaging;
 using DeckSearch.Config;
 using DeckSearch.Logging;
 using DeckSearch.Search.MapElites;
+using DeckSearch.Search.EvolutionStrategy;
 
 
 namespace DeckSearch.Search
@@ -90,7 +91,8 @@ namespace DeckSearch.Search
 
             else if (config.Search.Type.Equals("EvolutionStrategy")) 
             {
-                
+                var searchConfig = Toml.ReadFile<EvolutionStrategyParams>(config.Search.ConfigFilename);
+                _searchAlgo = new EvolutionStrategyAlgorithm(searchConfig);
             }
         }
 
