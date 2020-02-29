@@ -10,7 +10,6 @@ namespace DeckSearch.Search.EvolutionStrategy
     class EvolutionStrategyAlgorithm : SearchAlgorithm
     {
         private EvolutionStrategyParams _params;
-        private List<Individual> _population;
         private List<Individual> _parents;
         private int _individualsEvaluated;
         private int _individualsDispatched;
@@ -21,7 +20,6 @@ namespace DeckSearch.Search.EvolutionStrategy
             _parents = null;
             _individualsEvaluated = 0;
             _individualsDispatched = 0;
-            _population = new List<Individual>();
 
         }
 
@@ -50,10 +48,10 @@ namespace DeckSearch.Search.EvolutionStrategy
         {
             ind.ID = _individualsEvaluated;
             _individualsEvaluated++;
-            _population.Add(ind);
-            if (_population.Count >= _params.Search.InitialPopulation) {
+            _parents.Add(ind);
+            if (_individualsEvaluated >= _params.Search.InitialPopulation) {
                 // choose parents if there are enough evaluated individuals
-                _parents = _population.OrderBy(o => o.Fitness)
+                _parents = _parents.OrderBy(o => o.Fitness)
                            .Reverse().Take(_params.Search.NumParents).ToList();
             }
         }
