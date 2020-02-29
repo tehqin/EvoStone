@@ -64,7 +64,7 @@ Type = "MAP-Elites"
 ConfigFilename = "config/me_config.tml"
 
 [Network]
-LayerSizes = [16, 5, 4, 1]
+LayerSizes = [15, 5, 4, 1]
 
 [Player]
 DeckPool = "Meta Decks"
