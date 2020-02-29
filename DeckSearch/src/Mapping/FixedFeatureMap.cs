@@ -29,20 +29,20 @@ namespace DeckSearch.Mapping
       private double[] _lowGroupBound;
       private double[] _highGroupBound;
 
-      public FixedFeatureMap(Configuration config, MapSizer groupSizer)
+      public FixedFeatureMap(int numToEvaluate, MapParams config, MapSizer groupSizer)
       {
          _allIndividuals = new List<Individual>();
          _groupSizer = groupSizer;
-         _maxIndividualsToEvaluate = config.Search.NumToEvaluate;
+         _maxIndividualsToEvaluate = numToEvaluate;
          NumGroups = -1;
 
-         NumFeatures = config.Map.Features.Length;
+         NumFeatures = config.Features.Length;
          _lowGroupBound = new double[NumFeatures];
          _highGroupBound = new double[NumFeatures];
          for (int i=0; i<NumFeatures; i++)
          {
-            _lowGroupBound[i] = config.Map.Features[i].MinValue;
-            _highGroupBound[i] = config.Map.Features[i].MaxValue;
+            _lowGroupBound[i] = config.Features[i].MinValue;
+            _highGroupBound[i] = config.Features[i].MaxValue;
          }
 
 

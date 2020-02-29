@@ -1,0 +1,4 @@
+[Search]
+InitialPopulation = 100
+NumToEvaluate = 10000
+NumParents = 10

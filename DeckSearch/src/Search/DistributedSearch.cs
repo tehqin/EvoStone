@@ -15,6 +15,7 @@ using SabberStoneUtil.Messaging;
 using DeckSearch.Config;
 using DeckSearch.Logging;
 using DeckSearch.Search.MapElites;
+using DeckSearch.Search.EvolutionStrategy;
 
 
 namespace DeckSearch.Search
@@ -66,11 +67,11 @@ namespace DeckSearch.Search
             // Grab the configuration info
             _configFilename = configFilename;
             var config = Toml.ReadFile<Configuration>(_configFilename);
-            Console.WriteLine("NumFeatures: " + config.Map.Features.Length);
-            foreach (var p in config.Map.Features)
-            {
-                Console.WriteLine(p.Name);
-            }
+            // Console.WriteLine("NumFeatures: " + config.Map.Features.Length);
+            // foreach (var p in config.Map.Features)
+            // {
+            //     Console.WriteLine(p.Name);
+            // }
 
             // Configuration for the search space
             _heroClass = CardReader.GetClassFromName(config.Deckspace.HeroClass);
@@ -81,7 +82,18 @@ namespace DeckSearch.Search
             InitLogs();
 
             // Set up search algorithm
-            _searchAlgo = new MapElitesAlgorithm(config);
+            Console.WriteLine("Algo: " + config.Search.Type);
+            if (config.Search.Type.Equals("MAP-Elites"))
+            {
+                var searchConfig = Toml.ReadFile<MapElitesParams>(config.Search.ConfigFilename);
+                _searchAlgo = new MapElitesAlgorithm(searchConfig);
+            }
+
+            else if (config.Search.Type.Equals("EvolutionStrategy")) 
+            {
+                var searchConfig = Toml.ReadFile<EvolutionStrategyParams>(config.Search.ConfigFilename);
+                _searchAlgo = new EvolutionStrategyAlgorithm(searchConfig);
+            }
         }
 
         private void InitLogs()
