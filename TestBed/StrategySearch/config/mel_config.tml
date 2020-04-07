@@ -1,0 +1,20 @@
+[Search]
+InitialPopulation = 500
+NumToEvaluate = 50000
+MutationPower = 0.05
+MutationPower2 = 0.5
+
+[Map]
+Type = "FixedFeature"
+StartSize = 100
+EndSize = 100
+
+[[Map.Features]]
+Name = "NumTurns"
+MinValue = 5.0
+MaxValue = 15.0
+
+[[Map.Features]]
+Name = "HandSize"
+MinValue = 1.0
+MaxValue = 7.0

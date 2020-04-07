@@ -110,6 +110,12 @@ namespace StrategySearch.Search
                Toml.ReadFile<MapElitesParams>(config.Search.ConfigFilename);
             _searchAlgo = new MapElitesAlgorithm(searchConfig, numParams);
          }
+         else if (config.Search.Type.Equals("MAP-Elites-Line"))
+         {
+            var searchConfig = 
+               Toml.ReadFile<MapElitesParams>(config.Search.ConfigFilename);
+            _searchAlgo = new MapElitesLineAlgorithm(searchConfig, numParams);
+         }
          else
          {
             Console.WriteLine(string.Format("Strategy {} not supported.", 

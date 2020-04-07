@@ -11,5 +11,6 @@ namespace StrategySearch.Config
       public int InitialPopulation { get; set; }
       public int NumToEvaluate { get; set; }
       public double MutationPower { get; set; }
+      public double MutationPower2 { get; set; }
    }
 }
