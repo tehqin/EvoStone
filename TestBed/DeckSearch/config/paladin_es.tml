@@ -1,0 +1,15 @@
+[Evaluation]
+OpponentDeckSuite = "resources/decks/suites/starterMeta.tml"
+DeckPools = ["resources/decks/pools/starterDecks.tml"]
+
+[[Evaluation.PlayerStrategies]]
+NumGames = 200
+Strategy = "Control"
+
+[Deckspace]
+HeroClass = "paladin"
+CardSets = ["CORE", "EXPERT1"]
+
+[Search]
+Type = "EvolutionStrategy"
+ConfigFilename = "config/paladin_es_config.tml"

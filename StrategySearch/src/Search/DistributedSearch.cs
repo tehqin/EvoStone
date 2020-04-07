@@ -274,6 +274,8 @@ namespace StrategySearch.Search
                Individual choiceIndividual = _searchAlgo.GenerateIndividual();
 
                string inboxPath = string.Format(_inboxTemplate, workerId);
+               Console.WriteLine(inboxPath);
+               Console.WriteLine(choiceIndividual.ToString());
                SendWork(inboxPath, choiceIndividual);
                _individualStable[workerId] = choiceIndividual;
             }

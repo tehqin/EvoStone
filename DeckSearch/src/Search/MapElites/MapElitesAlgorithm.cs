@@ -12,7 +12,7 @@ namespace DeckSearch.Search.MapElites
 {
    class MapElitesAlgorithm : SearchAlgorithm
    {
-      private SearchParams _params;
+      private MapElitesParams _params;
       private int _individualsEvaluated;
       private int _individualsDispatched;
 
@@ -22,41 +22,41 @@ namespace DeckSearch.Search.MapElites
 
       private const string ELITE_MAP_FILENAME = "logs/elite_map_log.csv";
 
-      public MapElitesAlgorithm(Configuration config)
+      public MapElitesAlgorithm(MapElitesParams config)
       {
          _individualsDispatched = 0;
          _individualsEvaluated = 0;
-         _params = config.Search;
+         _params = config;
 
-         InitMap(config);
+         InitMap();
       }
 
-      private void InitMap(Configuration config)
+      private void InitMap()
       {
-         var mapSizer = new LinearMapSizer(config.Map.StartSize,
-                                             config.Map.EndSize);
-         if (config.Map.Type.Equals("SlidingFeature"))
-               _featureMap = new SlidingFeatureMap(config, mapSizer);
-         else if (config.Map.Type.Equals("FixedFeature"))
-               _featureMap = new FixedFeatureMap(config, mapSizer);
+         var mapSizer = new LinearMapSizer(_params.Map.StartSize,
+                                             _params.Map.EndSize);
+         if (_params.Map.Type.Equals("SlidingFeature"))
+               _featureMap = new SlidingFeatureMap(_params.Search.NumToEvaluate, _params.Map, mapSizer);
+         else if (_params.Map.Type.Equals("FixedFeature"))
+               _featureMap = new FixedFeatureMap(_params.Search.NumToEvaluate, _params.Map, mapSizer);
          else
                Console.WriteLine("ERROR: No feature map specified in config file.");
 
-         featureNames = new string[config.Map.Features.Length];
-         for (int i = 0; i < config.Map.Features.Length; i++)
-               featureNames[i] = config.Map.Features[i].Name;
+         featureNames = new string[_params.Map.Features.Length];
+         for (int i = 0; i < _params.Map.Features.Length; i++)
+               featureNames[i] = _params.Map.Features[i].Name;
 
          _map_log = new FrequentMapLog(ELITE_MAP_FILENAME, _featureMap);
 
       }
 
-      public bool IsRunning() => _individualsEvaluated < _params.NumToEvaluate;
-      public bool IsBlocking() => _individualsDispatched >= _params.InitialPopulation &&
+      public bool IsRunning() => _individualsEvaluated < _params.Search.NumToEvaluate;
+      public bool IsBlocking() => _individualsDispatched >= _params.Search.InitialPopulation &&
                                  _individualsEvaluated == 0;
       public Individual GenerateIndividual(List<Card> cardSet)
       {
          _individualsDispatched++;
-         return _individualsDispatched <= _params.InitialPopulation ?
+         return _individualsDispatched <= _params.Search.InitialPopulation ?
                 Individual.GenerateRandomIndividual(cardSet) :
                 _featureMap.GetRandomElite().Mutate();
       }
