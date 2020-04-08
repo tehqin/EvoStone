@@ -114,11 +114,6 @@ namespace StrategySearch.Search.MapElites
 
          if (_individualsEvaluated % 100 == 0)
             _map_log.UpdateLog();
-      
-         if (!IsRunning())
-         {
-            Console.WriteLine(string.Format("{0},{1},{2}", _params.Search.MutationPower, _maxFitness, _featureMap.EliteMap.Count));
-         }
       }
    }
 }
