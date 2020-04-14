@@ -35,6 +35,7 @@ namespace StrategySearch.Emitters
          Eigenvalues = 
             DenseVector.OfEnumerable(evd.EigenValues.Select(c => c.Real));
          Eigenbasis = evd.EigenVectors;
+         ConditionNumber = Eigenvalues.Max() / Eigenvalues.Min();
 
          for (int i=0; i<_numDimensions; i++)
          {
