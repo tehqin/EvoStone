@@ -75,7 +75,7 @@ namespace StrategySearch.Emitters
 
          double flatness =
 				Math.Abs(parents[0].Fitness - parents[parents.Count-1].Fitness);
-         if (flatness < 1e-6)
+         if (flatness < 1e-12)
             return true;
 
          return false;
