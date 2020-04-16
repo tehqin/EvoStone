@@ -27,6 +27,7 @@ namespace StrategySearch.Emitters
       private DecompMatrix _C;
       private LA.Vector<double> _pc, _ps;
       private LA.Vector<double> _mean;
+      private LA.Vector<double> _feature_mean;
       private int _individualsDispatched;
       private int _individualsEvaluated;
       private int _generation;
@@ -58,6 +59,7 @@ namespace StrategySearch.Emitters
          _direction = LA.Vector<double>.Build.Dense(_featureMap.NumFeatures);	
          for (int i=0; i<_featureMap.NumFeatures; i++)
             _direction[i] = Sampler.gaussian() * _featureMap.GetFeatureScalar(i);
+         _feature_mean = DenseVector.OfArray(_featureMap.NumFeatures);
 
          _mutationPower = _params.MutationPower;
          _pc = LA.Vector<double>.Build.Dense(_numParams);
@@ -108,6 +110,7 @@ namespace StrategySearch.Emitters
          if (ind.Generation != _generation)
             return;
 
+         _feature_mean += DenseVector.OfArray(ind.Features);
          if (didAdd)
             _parents.Add(ind);
          _individualsEvaluated++;
@@ -122,9 +125,11 @@ namespace StrategySearch.Emitters
             // Only update if we have parents.
             if (numParents > 0)
             {
+               _feature_mean /= _params.PopulationSize;
                foreach (Individual cur in _parents)
                {
-                  LA.Vector<double> dv = DenseVector.OfArray(cur.Features);
+                  LA.Vector<double> dv = 
+                     DenseVector.OfArray(cur.Features) - _feature_mean;
                   cur.Delta = _direction.DotProduct(dv);
                }
                _parents = _parents.OrderByDescending(o => o.Delta).ToList();
