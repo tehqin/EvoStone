@@ -1,3 +1,7 @@
+/* This is a FeatureMap that has fixed boundaries at even intervals.
+ * It is exactly as described in the original MAP-Elites paper.
+ */
+
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -5,10 +9,6 @@ using System.IO;
 using DeckSearch.Config;
 using DeckSearch.Mapping.Sizers;
 using DeckSearch.Search;
-
-/* This is a FeatureMap that has fixed boundaries at even intervals.
- * It is exactly as described in the original MAP-Elites paper.
- */
 
 namespace DeckSearch.Mapping
 {
