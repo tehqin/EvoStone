@@ -57,7 +57,7 @@ namespace StrategySearch.Mapping
          if (_highGroupBound[featureId] <= feature+1e-9)
             return NumGroups-1;
 
-         double gap = _highGroupBound[featureId] - _lowGroupBound[featureId] + 1;
+         double gap = _highGroupBound[featureId] - _lowGroupBound[featureId];
          double pos = feature - _lowGroupBound[featureId];
          int index = (int)((NumGroups * pos + 1e-9) / gap);
          return index;
