@@ -1,3 +1,7 @@
+/* Adapted from the C# implementation of pure_cma.py
+ *    https://github.com/CMA-ES/pycma/blob/master/cma/purecma.py
+ */
+
 using System;
 using System.Linq;
 using System.Collections.Generic;

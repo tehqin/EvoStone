@@ -1,3 +1,9 @@
+/* A C# implementation of pure_cma.py
+ *    https://github.com/CMA-ES/pycma/blob/master/cma/purecma.py
+ *
+ * A restart rule is additionally implemented with fixed lambda.
+ */
+
 using System;
 using System.Linq;
 using System.Numerics;
